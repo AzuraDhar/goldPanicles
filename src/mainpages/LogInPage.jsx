@@ -25,7 +25,7 @@ function LogInPage() {
       console.log("Logged in user:", result.data);
 
       // redirect after login
-      navigate("/signup"); // change if needed
+      navigate("/client"); // change if needed
     } else {
       alert("Invalid email or password");
     }

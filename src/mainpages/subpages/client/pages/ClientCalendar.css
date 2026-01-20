@@ -1,0 +1,146 @@
+.clientCalendarBody {
+    height: 80%;
+    width: 95%;
+    background-color: azure;
+}
+
+.calendar-container {
+    width: 100%;
+    height: 600px; /* Fixed height for testing */
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.react-calendar {
+    width: 100% !important;
+    height: 100% !important;
+    border: none !important;
+}
+
+/* Weekday headers */
+.react-calendar__month-view__weekdays {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Main days container - preserve library's flexbox */
+.react-calendar__month-view__days {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    height: calc(100% - 60px) !important;
+}
+
+/* Individual day cells - 7 columns */
+.react-calendar__month-view__days__day {
+    width: 14.2857% !important; /* 100% / 7 */
+    height: 90px !important; /* 100% / 6 */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 10px 0 !important;
+    border: 1px solid #eee !important;
+    box-sizing: border-box !important;
+}
+
+/* Ensure content is visible */
+.react-calendar__month-view__days__day abbr {
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none !important;
+}
+
+/* Highlight Sunday column to verify */
+.react-calendar__month-view__days__day:nth-child(7n+1) {
+    background-color: rgba(255, 0, 0, 0.05);
+}
+
+                .clientRequestForm{
+                    height: 75%;
+                    width: 30%;
+
+                    background-color: antiquewhite;
+
+                    position: absolute;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;               
+                }
+
+                .request_title{
+                    width: 80%;
+                    border-bottom: 1px solid black;
+                }
+
+                .clientRequestForm form{
+                    flex: 1;
+                }
+                .clientRequestForm form input{
+                    height: 30px;
+                }
+
+                        .requestForm_label{
+
+                            width: 90%;
+                            display: flex;
+                            flex-direction: column;
+                            text-align: start;
+                        }
+                        .requestForm_label label{
+                            left: 0 !important;
+                            font-size: 13px;
+                        }
+
+                        .Description{
+                            height: 50px;
+
+                            font-size: 13px;
+                            font-weight: 600;
+                        }
+
+                        .requestForm_label1{
+
+                            width: 94%;
+                            display: flex;
+                            text-align: start;
+                        }
+                        .requestForm_label1 label{
+                            left: 0 !important;
+                            font-size: 13px;
+                        }
+                        .parenthesis{
+                            font-size: 9px;
+                        }
+
+                        .submitForm_btn{
+                            display: flex;
+                            width: 90%;
+                            height: 7%;
+                            
+                            justify-content: center;
+
+                            gap: 20px;
+                        }
+
+                        .submitForm_btn button{
+                            width: 30%;
+                            height: 100%;
+
+                            font-size: 10px;
+                        }
+
+                        .submit_btn1{
+                            background-color: rgb(99, 162, 246) !important;
+                        }
+                        .submit_btn2{
+                            background-color: #E4626B !important;
+                        }
+
+
+.clientCalendarNotes{
+        height: 15%;
+        width: 95%;
+
+        background-color: aquamarine;
+}

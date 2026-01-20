@@ -1,0 +1,75 @@
+.clienMainBody{
+    height: 100vh;
+    width: 100%;
+    background-color: rgb(243, 215, 178) !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    user-select: none;
+}
+
+        .clientColumnOne{
+            width: 30%;
+            height: 100%;
+
+            background-color: rgba(176, 201, 201, 0.942);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+                    .clientLogo{
+                        height: 15%;
+                        width: 100%;
+
+                        background-color: bisque;
+                    }
+
+                    .clientMenu{
+                        height: 75%;
+                        width: 100%;
+
+                        background-color: antiquewhite;
+                    }
+
+                                .clientOptions{
+                                    height: 90%;
+                                    width: 100%;
+
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: center;
+                                }
+
+                                .options{
+                                    height: 10%;
+                                    width: 90%;
+                                    padding-top: 8px;
+                                    margin-top: 3%;
+
+                                    background-color: rgba(82, 93, 177, 0.67);
+                                    text-align: center;
+
+                                    font-weight: 600;
+                                }
+
+                    .clientProfile{
+                        height: 10%;
+                        width: 100%;
+
+                        background-color: rgb(235, 188, 116);
+                    }
+
+
+        .clientColumnTwo{
+            width: 70%;
+            height: 100%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            flex-direction: column;
+        }
