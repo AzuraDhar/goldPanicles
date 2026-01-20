@@ -6,12 +6,17 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './index.css';
 
 import LogInPage from './mainpages/LogInPage';
+import SignUpPage from './mainpages/SignUpPage';
 
 const router = createBrowserRouter([
 
   {
     path: "/",
     element: <LogInPage/>,
+  },
+  {
+    path: "/signup",
+    element: <SignUpPage/>,
   },
  
 ]);
