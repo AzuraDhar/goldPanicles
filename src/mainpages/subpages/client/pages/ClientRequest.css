@@ -1,0 +1,82 @@
+.clientRequestDisplay{
+    height: 90%;
+    width: 90%;
+
+    background-color: rgb(255, 255, 255);
+
+    overflow: auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.clientDisplayTitle{
+    height: 8%;
+    width: 100%;
+
+    font-size: 20px;
+    font-weight: 600;
+}
+
+    .clientDisplayTitle p{
+        color: #EADCAC;
+    }
+
+.clientDisplayBody{
+    height: 92%;
+    width: 100%;
+
+    background-color: rgb(123, 173, 215);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+                .clientDisplayHeader{
+                    height: 8%;
+                    width: 100%;
+
+                    background-color: aliceblue;
+
+                    border-bottom: 1px solid black;
+                }
+
+                .clientDisplayHeader span{
+                    font-size: 16px;
+                    font-weight: 600;
+                }
+
+                .clientRequestList .row{
+                    border-bottom: 1px solid black !important;
+
+                    cursor: pointer;
+                }
+
+                .clientDisplayRequests{
+                    height: 92%;
+                    width: 100%;
+
+                    background-color: rgb(154, 253, 253);
+
+                    position: relative;
+
+                    overflow-y: auto;
+                    overflow-x: hidden;
+                }
+
+                        .clientOptions1{
+                            position: absolute !important;
+
+                            width: 50%;
+                            height: 500px;
+
+                            background-color: #EADCAC;
+
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                        }

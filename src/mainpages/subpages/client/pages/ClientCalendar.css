@@ -137,6 +137,17 @@
                             background-color: #E4626B !important;
                         }
 
+                        /* Add this to your existing ClientCalendar.css file */
+                        .msg_alert {
+                        position: absolute !important;
+                        top: 80% !important;
+                        left: 50% !important;
+                        transform: translateX(-50%) !important;
+                        width: 90% !important;
+                        text-align: center !important;
+                        z-index: 10 !important;
+                        }
+
 
 .clientCalendarNotes{
         height: 15%;

@@ -242,7 +242,7 @@ function ClientCalendar() {
             </div>
 
             {submitMessage && (
-              <div className={`alert ${submitMessage.includes('Error') ? 'alert-danger' : 'alert-success'} mt-3`}>
+              <div className={`alert ${submitMessage.includes('Error') ? 'alert-danger' : 'alert-success'} mt-3 msg_alert`}>
                 {submitMessage}
               </div>
             )}
