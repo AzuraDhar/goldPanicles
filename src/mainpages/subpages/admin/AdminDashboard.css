@@ -1,0 +1,78 @@
+.adminMain_Body{
+    height: 100dvh;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .admin_columnOne{
+        height: 100dvh;
+        width: 30%;
+
+        background-color: aqua;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+            .adminLogo{
+                height: 15%;
+                width: 100%;
+
+                background-color: rgb(238, 238, 175);
+            }
+
+            .adminMenu{
+                height: 75%;
+                width: 100%;
+
+                background-color: antiquewhite;
+            }
+
+                    .adminOptions{
+                        height: 90%;
+                        width: 100%;
+
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                    }
+
+                    .options{
+                        height: 10%;
+                        width: 90%;
+                        padding-top: 8px;
+
+                        background-color: rgba(82, 93, 177, 0.67);
+                        text-align: center;
+
+                        font-weight: 600;
+                    }
+
+            .adminUserProfile{
+                height: 10%;
+                width: 100%;
+
+                background-color: rgb(239, 194, 126);
+            }
+
+
+
+    /*        Column Two                 */
+
+    .admin_columnTwo{
+        height: 100dvh;
+        width: 70%;
+
+        background-color: aquamarine;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        flex-direction: column;
+    }

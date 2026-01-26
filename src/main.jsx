@@ -8,6 +8,7 @@ import './index.css';
 import LogInPage from './mainpages/LogInPage';
 import SignUpPage from './mainpages/SignUpPage';
 import ClientDashboard from './mainpages/subpages/client/ClientDashboard';
+import AdminDashboard from './mainpages/subpages/admin/AdminDashboard';
 
 const router = createBrowserRouter([
 
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "/client",
     element: <ClientDashboard/>,
+  },
+  {
+    path: "/admin",
+    element: <AdminDashboard/>,
   },
  
 ]);

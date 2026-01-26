@@ -1,0 +1,40 @@
+.requestBody{
+    height: 90%;
+    width: 90%;
+
+    background-color: antiquewhite !important;
+}
+
+.adminRequestTitle{
+    height: 10%;
+    width: 100%;
+
+    background-color: rgb(43, 98, 79);
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    user-select: none;
+}
+
+.pending_tab{
+    height: 60%;
+    width: 18%;
+
+    background-color: aliceblue;
+
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.adminRequestBody{
+    height: 90%;
+    width: 100%;
+
+    background-color: aliceblue;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

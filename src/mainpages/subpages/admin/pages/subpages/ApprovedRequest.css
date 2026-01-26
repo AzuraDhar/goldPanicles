@@ -1,0 +1,28 @@
+.approved_header{
+    height: 10%;
+    width: 100%;
+
+    background-color: rgb(95, 138, 124);
+    
+    display: flex;
+
+    border-bottom: 1px solid black;
+    user-select: none;
+}
+
+.approved_body{
+    height: 90%;
+    width: 100%;
+
+    background-color: rgb(86, 208, 168);
+
+    overflow-y: auto;
+    overflow-x: hidden;
+    user-select: none;
+}
+
+.approved_body .row{
+    border-bottom: 1px solid black;
+
+    cursor: pointer;
+}
