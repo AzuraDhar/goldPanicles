@@ -72,10 +72,6 @@
                     width: 80%;
                     border-bottom: 1px solid black;
                 }
-
-                .clientRequestForm form{
-                    flex: 1;
-                }
                 .clientRequestForm form input{
                     height: 30px;
                 }

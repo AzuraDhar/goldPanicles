@@ -2,9 +2,7 @@
     height: 90%;
     width: 90%;
 
-    background-color: rgb(255, 255, 255);
-
-    overflow: auto;
+    background-color: aliceblue;
 
     display: flex;
     flex-direction: column;
@@ -28,7 +26,7 @@
     height: 92%;
     width: 100%;
 
-    background-color: rgb(123, 173, 215);
+    background-color: aliceblue;
 
     display: flex;
     justify-content: center;
@@ -60,7 +58,7 @@
                     height: 92%;
                     width: 100%;
 
-                    background-color: rgb(154, 253, 253);
+                    background-color: aliceblue;
 
                     position: relative;
 
@@ -72,11 +70,224 @@
                             position: absolute !important;
 
                             width: 50%;
-                            height: 500px;
+                            height: 90%;
 
-                            background-color: #EADCAC;
+                            background-color: #fff;
 
                             top: 50%;
                             left: 50%;
                             transform: translate(-50%, -50%);
                         }
+
+                        .form-header{
+                            height: 10%;
+                            width: 100%;
+
+                            display: flex;
+                            justify-content: center;
+                        }
+
+                        .updateForm{
+                            height: 100%;
+                            width: 90%;
+
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+
+                            font-size: 15px;
+                            font-weight: 600;
+
+                            border-bottom: 1px solid black;
+                        }
+
+                        .form-body{
+                            height: 90%;
+                            width: 100%;
+
+                            display: flex;
+                            justify-content: start;
+                            align-items: center;
+                            flex-direction: column;
+
+                            gap: 10px;
+                        }
+
+                        .formData_span{
+                            height: 9%;
+                            width: 90%;
+
+                            display: flex;
+                        }
+
+                        .formData_span span{
+                            display: flex;
+                        }
+
+                        .formData_span > span{
+                            flex: 1;
+                            text-align: center;
+                        }
+                        .formData_span p{
+                            font-size: 13px;
+
+                            font-weight: 600;
+                        }
+
+                        .span_button{
+                            display: flex;
+                            justify-content: flex-end;
+                            align-items: center !important;
+                            gap: 10px;
+                        }
+                        .span_button button{
+                            cursor: pointer;
+                        }
+
+                        /* This completely removes the button area */
+.clientDisplayRequests::-webkit-scrollbar-button {
+    display: none !important;
+    height: 0 !important;
+    width: 0 !important;
+}
+
+/* Also ensure the scrollbar itself doesn't reserve space for buttons */
+.clientDisplayRequests::-webkit-scrollbar {
+    background-color: #f1f1f1;
+    width: 10px; /* Adjust as needed */
+}
+
+.clientDisplayRequests::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 5px;
+}
+
+
+                    .update_Form{
+                            position: absolute !important;
+
+                            width: 50%;
+                            height: 90%;
+
+                            background-color: #fff;
+
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                    }
+
+                    .update_Form .form-header{
+                        height: 9%;
+                        width: 100%;
+                    }
+
+                    .update_Form form{
+                        height: 91%;
+                        width: 100%;
+
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
+                    }
+                    .update_Form form input{
+                        height: 30px;
+                    }
+
+                    .update_Form form .updateForm_input{
+                        width: 90%;
+
+                        display: flex;
+                        justify-content: center;
+                        align-items: flex-start;
+                        flex-direction: column;
+                    }
+
+                    .update_Form form .updateForm_input label{
+                        margin-bottom: 1px !important;
+
+                        font-size: 13px;
+                        font-weight: 600;
+                    }
+
+                    .textarea{
+                        width: 90%;
+
+                        display: flex;
+                        justify-content: center;
+                        align-items: flex-start;
+                        flex-direction: column;
+                    }
+
+                    .textarea label{
+                        margin-bottom: 1px;
+
+                        font-size: 13px;
+                        font-weight: 600;
+                    }
+
+                    .description_area{
+                        width: 100% !important;
+                    }
+
+                    .updateForm_input2{
+                        width: 90%;
+                        display: flex;
+                        flex-wrap: wrap; /* Allows wrapping on smaller screens */
+                        justify-content: space-between;
+                        align-items: flex-start;
+                        gap: 10px;
+                    }
+
+                    .updateForm_input2 label{
+                        font-size: 13px;
+                        font-weight: 600;
+                    }
+
+                    .two_column{
+                        display: flex;
+                        align-items: flex-start;
+                        flex-direction: column;
+                        flex: 1 1 calc(50% - 10px); /* Takes 50% minus half the gap */
+                        min-width: 200px; /* Minimum width before wrapping */
+                    }
+
+                    @media (max-width: 768px) {
+                        .updateForm_input2 {
+                            flex-direction: column; /* Stack vertically on small screens */
+                        }
+    
+                        .updateForm_input2 .two_column {
+                            flex: 1 1 100%; /* Take full width on small screens */
+                            width: 100%;
+                        }
+                    }
+
+                    .two_column label{
+                        margin-bottom: 1px;
+                    }
+
+                    .updateForm_button{
+                        display: flex;
+                        justify-content: center;
+                        align-self: flex-end;
+                    }
+
+                    .updateForm_button button{
+                        height: 50%;
+                        font-size: 13px;
+                        padding: 10px;
+                        width: 100px;
+                    }
+
+                    .save_btn{
+                        background-color: rgb(71, 154, 243) !important;
+                    }
+
+                    .cancel_btn{
+                        background-color: #dc9e9e !important;
+                    }
+
+                    .updateForm_button button p{
+                        margin-top: -10px;
+                    }

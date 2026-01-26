@@ -16,7 +16,8 @@ function ClientCalendar() {
     location: '',
     contactPerson: '',
     contactInfo: '',
-    attachFile: ''
+    attachFile: '',
+    status: 'pending' // Add status field with default value
   });
   const [loading, setLoading] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
@@ -31,7 +32,8 @@ function ClientCalendar() {
       location: '',
       contactPerson: '',
       contactInfo: '',
-      attachFile: ''
+      attachFile: '',
+      status: 'pending' // Reset to pending when closing
     });
     setSubmitMessage('');
   };
@@ -46,7 +48,8 @@ function ClientCalendar() {
     // Set form data with the selected date
     setFormData(prev => ({
       ...prev,
-      date: formattedDate
+      date: formattedDate,
+      status: 'pending' // Ensure status is set when opening form
     }));
     
     setShowForm(true);
@@ -85,7 +88,9 @@ function ClientCalendar() {
       ...formData,
       created_at: new Date().toISOString(),
       // If time is empty, use current time
-      time: formData.time || formatTime(new Date())
+      time: formData.time || formatTime(new Date()),
+      // Ensure status is always 'pending' on submission
+      status: 'pending'
     };
 
     try {
@@ -124,7 +129,7 @@ function ClientCalendar() {
           <span className='request_title me-2'>
             <p className='mt-3 pb-1'>Request</p>
           </span>
-          <div className="form-header">
+          <div className="form_header mt-3">
             <button 
               onClick={closeForm}
               className="close-btn position-absolute top-0 end-0 mt-1 me-1 bg-danger bg-opacity-75"
@@ -134,7 +139,7 @@ function ClientCalendar() {
           </div>
           
           <form onSubmit={handleSubmit}>
-            <div className="requestForm_label mt-3 ms-3">
+            <div className="requestForm_label ms-3">
               <label htmlFor="eventTitle" className='mb-1 ms-1'>Event Title*</label>
               <input 
                 type="text" 
@@ -247,7 +252,7 @@ function ClientCalendar() {
               </div>
             )}
 
-            <div className="submitForm_btn ms-3 mt-3">
+            <div className="submitForm_btn ms-3 mt-4">
               <button 
                 type="submit" 
                 className="btn p-1 submit_btn1"
