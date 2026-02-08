@@ -1,0 +1,24 @@
+.row_header{
+    height: 10%;
+    width: 100%;
+
+    background-color: bisque;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    border-bottom: 1px solid black;
+}
+
+.row_datacell{
+    height: 90%;
+    width: 100%;
+
+    overflow-y: auto;
+}
+
+.account-row{
+    display: flex;
+    border-bottom: 1px solid black;
+}

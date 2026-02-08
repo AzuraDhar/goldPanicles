@@ -1,0 +1,196 @@
+.staff_mainbody{
+    height: 90%;
+    width: 90%;
+
+    background-color: aliceblue;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    user-select: none;
+}
+
+.staff_header{
+    height: 10%;
+    width: 100%;
+
+    background-color: rgb(197, 243, 243);
+
+    display: flex;
+}
+.add_staff{
+    height: 100%;
+    width: 20%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add_staff button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 50%;
+
+    background-color: rgb(187, 190, 192);
+}
+
+.staff_header span{
+    width: 13%;
+}
+
+.staff_body{
+    height: 90%;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.addStaff_form{
+    height: 65%;
+    width: 30%;
+
+    background-color: rgb(218, 218, 218);
+
+    position: absolute;
+}
+.addform_header{
+    height: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.addform_header span{
+    height: 100%;
+    width: 80%;
+    display: flex;
+    align-items: center;
+
+    border-bottom: 1px solid black;
+
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.addStaff_body{
+    height: 90%;
+    width: 100%;
+
+    background-color: blanchedalmond;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+.addstaff_input{
+    width: 80%;
+
+    display: flex;
+    gap: 10px;
+}
+
+/* Quick fix - just make it a bit smaller */
+/* Very small floating input */
+.form-floating.mb-3 .form-control {
+    height: 35px !important;
+    min-height: 35px !important;
+    padding: 0.35rem 0.65rem !important;
+    font-size: 0.85rem !important;
+    line-height: 1.3 !important;
+}
+
+.form-floating.mb-3 label {
+    padding: 0.45rem 0.65rem !important;
+    font-size: 0.85rem !important;
+}
+
+.form-floating.mb-3 .form-control:focus ~ label,
+.form-floating.mb-3 .form-control:not(:placeholder-shown) ~ label {
+    transform: scale(0.8) translateY(-0.6rem) translateX(0.15rem) !important;
+}
+
+/* Just make the button 35px */
+.dropdown .btn {
+    height: 35px;
+    width: 95%;
+    padding: 0 12px;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Fix the arrow alignment */
+.dropdown-toggle::after {
+    position: relative;
+    top: 1px;
+
+    margin-left: auto !important; /* Pushes arrow to right */
+    order: 2 !important;
+}
+
+.dropdown .btn.dropdown-toggle {
+    font-size: 0.8rem !important; /* Smaller text */
+}
+
+.dropdown-item {
+    font-size: 0.8rem !important; /* Smaller than default */
+    padding: 0.3rem 1rem !important; /* Adjust padding proportionally */
+}
+
+.optionsButton{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.create_button{
+    height: 30px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 0.85rem;
+    font-weight: 400;
+}
+.cancel_button{
+    height: 30px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 0.85rem;
+    font-weight: 400;
+}
+
+
+.dropdown1 .btn {
+    height: 35px;
+    width: 100%;
+    padding: 0 12px;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.dropdown1 {
+    width: 100%;
+}
+
+.dropdown1 .dropdown-menu {
+    width: 80% !important;
+}
+
+.dropdown .dropdown-menu {
+    width: 95% !important;
+}

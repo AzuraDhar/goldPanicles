@@ -69,25 +69,45 @@
                         .clientOptions1{
                             position: absolute !important;
 
-                            width: 50%;
-                            height: 90%;
+                            width: 30%;
+                            height: 80%;
 
                             background-color: #fff;
 
                             top: 50%;
-                            left: 50%;
+                            left: 60%;
                             transform: translate(-50%, -50%);
                         }
 
-                        .form-header{
+                        .clientOptions1 .form-body{
+                            height: 90%;
+                            width: 100%;
+
+                            display: flex;
+                            justify-content: start;
+                            align-items: center;
+                            flex-direction: column;
+
+                            gap: 10px;
+                            overflow-y: auto;
+                            overflow-x: hidden;
+                        }
+                        .attach_font span{
+                            font-size: 10px !important;
+                        }
+
+                        .clientOptions1 .form-header1{
                             height: 10%;
                             width: 100%;
 
                             display: flex;
                             justify-content: center;
+                            align-items: center;
+
+                            border-bottom: 1px solid black;
                         }
 
-                        .updateForm{
+                        .updateForm1{
                             height: 100%;
                             width: 90%;
 
@@ -98,7 +118,6 @@
                             font-size: 15px;
                             font-weight: 600;
 
-                            border-bottom: 1px solid black;
                         }
 
                         .form-body{
@@ -166,29 +185,35 @@
                     .update_Form{
                             position: absolute !important;
 
-                            width: 50%;
-                            height: 90%;
+                            width: 30%;
+                            height: 80%;
 
                             background-color: #fff;
 
                             top: 50%;
-                            left: 50%;
+                            left: 58%;
                             transform: translate(-50%, -50%);
+
+                            overflow-y: auto;
                     }
 
                     .update_Form .form-header{
-                        height: 9%;
+                        height:10%;
                         width: 100%;
+
+                        background-color: #f1f1f1 !important;
+                        color: #000000;
                     }
 
                     .update_Form form{
-                        height: 91%;
+                        min-height: 600px;
                         width: 100%;
 
                         display: flex;
                         justify-content: center;
                         align-items: center;
                         flex-direction: column;
+                        
                     }
                     .update_Form form input{
                         height: 30px;
@@ -273,21 +298,38 @@
                         align-self: flex-end;
                     }
 
-                    .updateForm_button button{
-                        height: 50%;
-                        font-size: 13px;
-                        padding: 10px;
-                        width: 100px;
-                    }
-
                     .save_btn{
-                        background-color: rgb(71, 154, 243) !important;
+                        background-color: #0d6efd !important;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        height: 30px;
+                    }
+                    .save_btn p{
+                        font-size: 10px;
                     }
 
                     .cancel_btn{
-                        background-color: #dc9e9e !important;
+                        background-color: #dc3545 !important;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: 30px;
+                    }
+
+                    .cancel_btn p{
+                        font-size: 10px;
                     }
 
                     .updateForm_button button p{
                         margin-top: -10px;
+                    }
+
+                    .edit_btn{
+                        background-color: #20c997 !important;
+                    }
+
+                    .delete_btn{
+                        background-color: #dc3545 !important;
                     }

@@ -1,33 +1,62 @@
 import React, { useState } from "react";
-
 import { MdOutlineEmail } from "react-icons/md";
 import { IoLockClosedOutline } from "react-icons/io5";
 import { LuLogIn } from "react-icons/lu";
-
 import { Link, useNavigate } from "react-router-dom";
-
 import "./LogInPage.css";
 import { logInUser } from "../api/login";
+import { storeUserData } from "../api/auth"; // or "../utils/auth"
 
 function LogInPage() {
   const navigate = useNavigate();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
-    const result = await logInUser(email, password);
+    try {
+      const result = await logInUser(email, password);
 
-    if (result.success) {
-      alert("Login successful!");
-      console.log("Logged in user:", result.data);
+      if (result.success) {
+        const user = result.data;
+        console.log("Logged in user:", user);
+        
+        // Use the storeUserData function to handle storage
+        storeUserData(user);
 
-      // redirect after login
-      navigate("/client"); // change if needed
-    } else {
-      alert("Invalid email or password");
+        console.log("localStorage user:", localStorage.getItem("user"));
+        console.log("sessionStorage userId:", sessionStorage.getItem("userId"));
+        console.log("sessionStorage userRole:", sessionStorage.getItem("userRole"));
+        
+        // Role-based redirection
+        switch (user.role) {
+          case "Administrator":
+            navigate("/admin");
+            break;
+          case "Section Head":
+            navigate("/staff");
+            break;
+          case "Staff":
+            navigate("/reg");
+            break;
+          case "client":
+            navigate("/client");
+            break;
+          default:
+            navigate("/login");
+            alert(`Role "${user.role}" not recognized. Please contact administrator.`);
+        }
+      } else {
+        alert(result.message || "Invalid email or password");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      alert("An error occurred during login. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -59,6 +88,7 @@ function LogInPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
+                  disabled={loading}
                 />
               </div>
 
@@ -76,16 +106,21 @@ function LogInPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
+                  disabled={loading}
                 />
               </div>
 
               {/* Submit */}
-              <button type="submit" className="btn mt-3">
+              <button 
+                type="submit" 
+                className="btn mt-3"
+                disabled={loading}
+              >
                 <span className="icon me-2">
                   <span className="icon_log me-2">
                     <LuLogIn className="icon-adjust" />
                   </span>
-                  LOGIN
+                  {loading ? "LOGGING IN..." : "LOGIN"}
                 </span>
               </button>
             </form>

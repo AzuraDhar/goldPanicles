@@ -1,0 +1,38 @@
+.staff_mainbody{
+    height: 90%;
+    width: 90%;
+
+    background-color: aliceblue;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    user-select: none;
+}
+
+.staff_header{
+    height: 10%;
+    width: 100%;
+
+    background-color: rgb(197, 243, 243);
+
+    display: flex;
+}
+
+.staff_header span{
+    width: 25%;
+}
+
+.staff_body{
+    height: 90%;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+

@@ -26,3 +26,15 @@
 
     cursor: pointer;
 }
+.approvalForm{
+    user-select: none;
+}
+
+.approve_Details{
+    display: flex;
+    justify-content: flex-start !important;
+    align-items: center;
+    width: 100%;
+
+    font-size: 14px;
+}

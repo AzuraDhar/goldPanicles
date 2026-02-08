@@ -57,7 +57,7 @@
 }
 
                 .clientRequestForm{
-                    height: 75%;
+                    min-height: 85%;
                     width: 30%;
 
                     background-color: antiquewhite;

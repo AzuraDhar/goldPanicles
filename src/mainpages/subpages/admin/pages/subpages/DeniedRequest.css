@@ -26,3 +26,17 @@
 
     cursor: pointer;
 }
+
+.deny_box span{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.deny_box span button{
+    background-color: #0D6FFC;
+
+    height: 35px;
+    width: 100px;
+    padding: 10px;
+}

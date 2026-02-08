@@ -1,0 +1,294 @@
+import React, { useState, useEffect } from "react";
+import { supabase } from "../../../../api/supabase";
+import './StaffSchedule.css';
+
+function StaffSchedule() {
+    // Define all time slots mapping to database column names
+    const timeSlots = [
+        "seven_am", "seventhirty_am", "eight_am", "eightthirty_am",
+        "nine_am", "ninethirty_am", "ten_am", "tenthirty_am",
+        "eleven_am", "eleventhirty_am", "twelve_pm", "twelvethirty_pm",
+        "one_pm", "onethirty_pm", "two_pm", "twothirty_pm",
+        "three_pm", "threethirty_pm", "four_pm", "fourthirty_pm",
+        "five_pm", "fivethirty_pm", "six_pm", "sixthirty_pm",
+        "seven_pm"
+    ];
+
+    const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+    
+    // Add a reload trigger state
+    const [reloadTrigger, setReloadTrigger] = useState(0);
+    
+    // State to hold all schedule data
+    const [scheduleData, setScheduleData] = useState({
+        monday: Array(25).fill(""),
+        tuesday: Array(25).fill(""),
+        wednesday: Array(25).fill(""),
+        thursday: Array(25).fill(""),
+        friday: Array(25).fill(""),
+        saturday: Array(25).fill(""),
+        sunday: Array(25).fill("")
+    });
+
+    const [recordIds, setRecordIds] = useState({
+        monday: null,
+        tuesday: null,
+        wednesday: null,
+        thursday: null,
+        friday: null,
+        saturday: null,
+        sunday: null
+    });
+
+    const [isSaving, setIsSaving] = useState(false);
+
+    // Load data on component mount AND when reloadTrigger changes
+    useEffect(() => {
+        loadAllSchedules();
+    }, [reloadTrigger]); // Add reloadTrigger as dependency
+
+    const loadAllSchedules = async () => {
+        try {
+            const newScheduleData = { ...scheduleData };
+            const newRecordIds = { ...recordIds };
+
+            for (const day of days) {
+                const { data, error } = await supabase
+                    .from(day)
+                    .select('*')
+                    .order('created_at', { ascending: false })
+                    .limit(1);
+
+                if (error) throw error;
+
+                if (data && data.length > 0) {
+                    newRecordIds[day] = data[0].id;
+                    // Map database data to array format
+                    const dayData = timeSlots.map(slot => data[0][slot] || "");
+                    newScheduleData[day] = dayData;
+                }
+            }
+
+            setScheduleData(newScheduleData);
+            setRecordIds(newRecordIds);
+        } catch (error) {
+            console.error('Error loading schedules:', error);
+        }
+    };
+
+    const handleInputChange = (day, index, value) => {
+        setScheduleData(prev => ({
+            ...prev,
+            [day]: prev[day].map((item, i) => i === index ? value : item)
+        }));
+    };
+
+    const saveAllSchedules = async () => {
+        setIsSaving(true);
+        try {
+            const savePromises = days.map(async (day) => {
+                // Convert array data to object format for database
+                const dataToSave = {};
+                timeSlots.forEach((slot, index) => {
+                    dataToSave[slot] = scheduleData[day][index] || "";
+                });
+
+                if (recordIds[day]) {
+                    // Update existing record
+                    return supabase
+                        .from(day)
+                        .update(dataToSave)
+                        .eq('id', recordIds[day]);
+                } else {
+                    // Create new record
+                    const { data } = await supabase
+                        .from(day)
+                        .insert([dataToSave])
+                        .select();
+
+                    if (data && data.length > 0) {
+                        setRecordIds(prev => ({
+                            ...prev,
+                            [day]: data[0].id
+                        }));
+                    }
+                    return { error: null };
+                }
+            });
+
+            await Promise.all(savePromises);
+            
+            // Show success message
+            alert('All schedules saved successfully!');
+            
+            // Trigger reload of this component only
+            setReloadTrigger(prev => prev + 1);
+            
+        } catch (error) {
+            console.error('Error saving all schedules:', error);
+            alert('Error saving schedules. Please try again.');
+        } finally {
+            setIsSaving(false);
+        }
+    };
+
+    return (
+        <>
+            <div className="display_sched">
+                <div className="dateHeader">
+                    <span className="timeSpan">Time</span>
+                    <span>Monday</span>
+                    <span>Tuesday</span>
+                    <span>Wednesday</span>
+                    <span>Thursday</span>
+                    <span>Friday</span>
+                    <span>Saturday</span>
+                    <span className="sundayRight">Sunday</span>
+                </div>
+
+                <div className="dateBody">  
+                    <div className="dateColumn timeColumn">
+                        <span className="timeSlot">07:00 - 07:30 AM</span>
+                        <span className="timeSlot">07:30 - 08:00 AM</span>
+                        <span className="timeSlot">08:00 - 08:30 AM</span>
+                        <span className="timeSlot">08:30 - 09:00 AM</span>
+                        <span className="timeSlot">09:00 - 09:30 AM</span>
+                        <span className="timeSlot">09:30 - 10:00 AM</span>
+                        <span className="timeSlot">10:00 - 10:30 AM</span>
+                        <span className="timeSlot">10:30 - 11:00 AM</span>
+                        <span className="timeSlot">11:00 - 11:30 AM</span>
+                        <span className="timeSlot">11:30 - 12:00 PM</span>
+                        <span className="timeSlot">12:00 - 12:30 PM</span>
+                        <span className="timeSlot">12:30 - 01:00 PM</span>
+                        <span className="timeSlot">01:00 - 01:30 PM</span>
+                        <span className="timeSlot">01:30 - 02:00 PM</span>
+                        <span className="timeSlot">02:00 - 02:30 PM</span>
+                        <span className="timeSlot">02:30 - 03:00 PM</span>
+                        <span className="timeSlot">03:00 - 03:30 PM</span>
+                        <span className="timeSlot">03:30 - 04:00 PM</span>
+                        <span className="timeSlot">04:00 - 04:30 PM</span>
+                        <span className="timeSlot">04:30 - 05:00 PM</span>
+                        <span className="timeSlot">05:00 - 05:30 PM</span>
+                        <span className="timeSlot">05:30 - 06:00 PM</span>
+                        <span className="timeSlot">06:00 - 06:30 PM</span>
+                        <span className="timeSlot">06:30 - 07:00 PM</span>
+                        <span className="timeSlot">07:00 - 07:30 PM</span>
+                    </div>
+
+                    {/* Monday Column */}
+                    <div className="dateColumn monday">
+                        {scheduleData.monday.map((value, index) => (
+                            <span key={index}>
+                                <input 
+                                    type="text" 
+                                    placeholder="+"
+                                    value={value}
+                                    onChange={(e) => handleInputChange('monday', index, e.target.value)}
+                                />
+                            </span>
+                        ))}
+                    </div>
+
+                    {/* Tuesday Column */}
+                    <div className="dateColumn monday">
+                        {scheduleData.tuesday.map((value, index) => (
+                            <span key={index}>
+                                <input 
+                                    type="text" 
+                                    placeholder="+"
+                                    value={value}
+                                    onChange={(e) => handleInputChange('tuesday', index, e.target.value)}
+                                />
+                            </span>
+                        ))}
+                    </div>
+
+                    {/* Wednesday Column */}
+                    <div className="dateColumn monday">
+                        {scheduleData.wednesday.map((value, index) => (
+                            <span key={index}>
+                                <input 
+                                    type="text" 
+                                    placeholder="+"
+                                    value={value}
+                                    onChange={(e) => handleInputChange('wednesday', index, e.target.value)}
+                                />
+                            </span>
+                        ))}
+                    </div>
+
+                    {/* Thursday Column */}
+                    <div className="dateColumn monday">
+                        {scheduleData.thursday.map((value, index) => (
+                            <span key={index}>
+                                <input 
+                                    type="text" 
+                                    placeholder="+"
+                                    value={value}
+                                    onChange={(e) => handleInputChange('thursday', index, e.target.value)}
+                                />
+                            </span>
+                        ))}
+                    </div>
+
+                    {/* Friday Column */}
+                    <div className="dateColumn monday">
+                        {scheduleData.friday.map((value, index) => (
+                            <span key={index}>
+                                <input 
+                                    type="text" 
+                                    placeholder="+"
+                                    value={value}
+                                    onChange={(e) => handleInputChange('friday', index, e.target.value)}
+                                />
+                            </span>
+                        ))}
+                    </div>
+
+                    {/* Saturday Column */}
+                    <div className="dateColumn monday">
+                        {scheduleData.saturday.map((value, index) => (
+                            <span key={index}>
+                                <input 
+                                    type="text" 
+                                    placeholder="+"
+                                    value={value}
+                                    onChange={(e) => handleInputChange('saturday', index, e.target.value)}
+                                />
+                            </span>
+                        ))}
+                    </div>
+
+                    {/* Sunday Column */}
+                    <div className="dateColumn monday">
+                        {scheduleData.sunday.map((value, index) => (
+                            <span key={index}>
+                                <input 
+                                    type="text" 
+                                    placeholder="+"
+                                    value={value}
+                                    onChange={(e) => handleInputChange('sunday', index, e.target.value)}
+                                />
+                            </span>
+                        ))}
+                    </div>
+                </div>
+
+            </div>
+            
+            {/* Save All Button - Added at the bottom */}
+            <div className="saveSched">
+                <button
+                    className="me-5"
+                    onClick={saveAllSchedules} 
+                    disabled={isSaving}
+                >
+                    {isSaving ? 'Saving All Schedules...' : 'Save All Schedules'}
+                </button>
+            </div>
+            
+        </>
+    )
+}
+
+export default StaffSchedule;

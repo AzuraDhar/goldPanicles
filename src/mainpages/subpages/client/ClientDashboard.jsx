@@ -70,4 +70,4 @@ function ClientDashboard(){
     )
 }
 
-export default ClientDashboard
+export default ClientDashboard;

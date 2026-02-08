@@ -14,8 +14,6 @@ function SignUpPage() {
     lastName: "",
     email: "",
     password: "",
-    classification: "",
-    segment: "",
   });
 
   const handleSubmit = async (e) => {
@@ -30,8 +28,6 @@ function SignUpPage() {
         lastName: "",
         email: "",
         password: "",
-        classification: "",
-        segment: "",
       });
     } else {
       alert("Error: " + result.error.message);
@@ -105,61 +101,8 @@ function SignUpPage() {
                         {showPassword ? <IoEyeOffOutline /> : <IoEyeOutline />}
                     </span>
                 </div>
-
-            {/* Dropdowns */}
-                <div className="dropdowntoggle mb-5">
-                    {/* Classification */}
-                        <div className="dropdown">
-                            <button
-                            className="btn dropdown-toggle btn_toggle d-flex justify-content-between align-items-center w-100"
-                            type="button"
-                            data-bs-toggle="dropdown"
-                            >
-                            <span>{formData.classification || "Classification"}</span>
-                            </button>
-                            <ul className="dropdown-menu">
-                            {["Office", "Department", "Organization"].map((item) => (
-                                <li key={item}>
-                                <button
-                                    type="button"
-                                    className="dropdown-item"
-                                    onClick={() =>
-                                    setFormData({ ...formData, classification: item })
-                                    }
-                                >
-                                    {item}
-                                </button>
-                                </li>
-                            ))}
-                            </ul>
-                        </div>
-
-                    {/* Segment */}
-                        <div className="dropdown">
-                            <button
-                            className="btn dropdown-toggle btn_toggle d-flex justify-content-between align-items-center w-100"
-                            type="button"
-                            data-bs-toggle="dropdown"
-                            >
-                            <span>{formData.segment || "Segment"}</span>
-                            </button>
-                            <ul className="dropdown-menu dropdown-menu-end">
-                            {["Sample 1", "Sample 2", "Sample 3"].map((item) => (
-                                <li key={item}>
-                                <button
-                                    type="button"
-                                    className="dropdown-item"
-                                    onClick={() =>
-                                    setFormData({ ...formData, segment: item })
-                                    }
-                                >
-                                    {item}
-                                </button>
-                                </li>
-                            ))}
-                            </ul>
-                        </div>
-                </div>
+                <br />
+                <br />
 
             {/* Submit */}
                 <button

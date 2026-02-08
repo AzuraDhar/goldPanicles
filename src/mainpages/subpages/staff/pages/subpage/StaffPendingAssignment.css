@@ -1,0 +1,135 @@
+.row_header{
+    height: 10%;
+    width: 100%;
+
+    background-color: bisque;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    border-bottom: 1px solid black;
+}
+
+.row_datacell{
+    height: 90%;
+    width: 100%;
+
+    overflow-y: auto;
+}
+
+.account-row{
+    display: flex;
+    border-bottom: 1px solid black;
+}
+
+.action_span{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1px;
+
+    cursor: pointer;
+}
+
+.span_dots{
+    height:5px;
+    width: 5px;
+
+    border-radius: 50%;
+
+    background-color: black;
+}
+
+.sched_button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.view_sched{
+    font-size: 10px;
+
+    background-color: #e5d08b
+}
+
+.delete_staff{
+    position: absolute;
+
+    height: 20%;
+    width: 20%;
+
+    background-color: #7c7c7c;
+    padding: 10px;
+}
+
+.deleteform_header{
+    height: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.deleteform_header span{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+
+    border-bottom: 1px solid black;
+
+    font-size: 15px;
+    font-weight: 600;
+    padding-bottom: 10px;
+}
+
+.deleteform_body{
+    height: 90%;
+    width: 100%;
+}
+.question{
+    width: 50% !important;
+}
+.question p{
+    font-size: 15px;
+}
+.delete_buttons{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.delete_buttons button{
+    height: 25px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 13px;
+}
+
+.display_sched{
+    position: absolute;
+
+    height:90%;
+    width: 63%;
+
+    background-color: #7c7c7c;
+}
+
+.sched_header{
+    height: 10%;
+    width: 100%;
+
+    background-color: rgb(202, 228, 251);
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    font-size: 25px;
+    font-weight: 600;
+}

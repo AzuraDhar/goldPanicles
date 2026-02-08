@@ -1,0 +1,151 @@
+.dash_mainContainer{
+    height: 90%;
+    width: 90%;
+
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.header{
+    height: 8%;
+    width: 100%;
+
+    background-color: wheat;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.task_status{
+    height: 27%;
+    width: 100%;
+
+    background-color: bisque;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 2%;
+}
+
+
+
+.task_status div{
+    height: 80%;
+    width: 20%; 
+
+    background-color: aquamarine;
+    display: flex;
+    flex-direction: column;
+}
+
+.card_list .card_header{
+    width: 100%;
+    height: 20%;
+    background-color: aliceblue;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+.card_list .card_body{
+    height: 80%;
+    width: 100%;
+    background-color: beige;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.tasklist{
+    height: 65%;
+    width: 100%;
+
+    background-color: beige;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.tasklist_header{
+    height: 8%;
+    width: 100%;
+
+    background-color: rgb(213, 255, 241);
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.tasklist_rowHead{
+    height: 12%;
+    width: 100%;
+
+    display: flex;
+    background-color: rgb(131, 227, 195);
+
+    border-bottom: 1px solid black;
+}
+.tasklist_rowHead span{
+    height: 100%;
+    width: 46%;
+    font-weight: 600;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.cleared_task{
+    display: flex;
+    justify-content: flex-end !important;
+    align-items: center;
+}
+
+.tasklist_listbody{
+    height: 80%;
+    width: 100%;
+
+    background-color: rgb(177, 133, 218);
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.tasklist_listbody span{
+    height: 100%;
+    width: 45%;
+    font-weight: 600;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.no_task{
+     display: flex;
+    justify-content: flex-end !important;
+    align-items: center;
+}
+.list_container{
+    height: 50px;
+    width: 100%;
+
+    display: flex;
+    background-color: aliceblue;
+    align-items: center;
+}

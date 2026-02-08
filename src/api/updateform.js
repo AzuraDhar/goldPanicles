@@ -12,10 +12,9 @@ export const updateRequest = async (id, updatedData) => {
             contactInfo: updatedData.contactInfo,
             contactPerson: updatedData.contactPerson,
             attachFile: updatedData.attachFile,
-            // Status is NOT included here - only admin can update it
             updated_at: new Date().toISOString()
         })
-        .eq('id', id)
+        .eq('request_id', id) // CHANGED: from 'id' to 'request_id'
         .select()
         .single();
     
@@ -27,7 +26,7 @@ export const deleteRequest = async (id) => {
     const { error } = await supabase
         .from('clientFormrequest')
         .delete()
-        .eq('id', id);
+        .eq('request_id', id); // CHANGED: from 'id' to 'request_id'
     
     if (error) throw error;
     return true;
