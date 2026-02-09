@@ -115,8 +115,8 @@
 
 .saveSched{
     position: absolute;
-    right: 0 !important;
-    bottom: 0 !important;
+    right: 25 !important;
+    bottom: 25 !important;
 }
 
 .saveSched button{

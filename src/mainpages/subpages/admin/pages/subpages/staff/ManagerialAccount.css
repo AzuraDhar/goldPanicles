@@ -54,13 +54,14 @@
     background-color: #e5d08b
 }
 
-.delete_staff{
+.delete_staff4{
     position: absolute;
 
-    height: 20%;
+    height: 25%;
     width: 20%;
 
-    background-color: #7c7c7c;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
     padding: 10px;
 }
 

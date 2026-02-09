@@ -48,10 +48,10 @@ function PendingAssignments() {
         }
     };
 
-    // Function to fetch approved requests with tracking info
+    // Function to fetch approved requests with tracking info - FIXED VERSION
     const getApprovedRequests = async () => {
         try {
-            // Fetch ALL approved requests
+            // Step 1: Fetch ALL approved requests
             const { data: approvedRequests, error: requestsError } = await supabase
                 .from('clientFormrequest')
                 .select('*')
@@ -66,10 +66,38 @@ function PendingAssignments() {
                 return [];
             }
 
-            // Get all request IDs
+            // Step 2: Check which requests are already assigned in taskedTable
             const requestIds = approvedRequests.map(req => req.request_id);
+            
+            // Check taskedTable for assignments
+            const { data: assignedRequests, error: assignError } = await supabase
+                .from('taskedTable')
+                .select('request_id')
+                .in('request_id', requestIds);
+            
+            // Create a set of already assigned request IDs
+            const assignedIds = new Set();
+            if (!assignError && assignedRequests) {
+                assignedRequests.forEach(req => {
+                    if (req.request_id) {
+                        assignedIds.add(req.request_id);
+                    }
+                });
+            }
+            
+            // Step 3: Filter out already assigned requests
+            const unassignedApprovedRequests = approvedRequests.filter(
+                req => !assignedIds.has(req.request_id)
+            );
+            
+            if (unassignedApprovedRequests.length === 0) {
+                return [];
+            }
 
-            // Fetch tracking records for these requests
+            // Step 4: Get the IDs of unassigned requests for tracking info
+            const unassignedRequestIds = unassignedApprovedRequests.map(req => req.request_id);
+
+            // Fetch tracking records for these unassigned requests
             const { data: trackRecords, error: trackError } = await supabase
                 .from('admintrackRecord')
                 .select(`
@@ -79,7 +107,7 @@ function PendingAssignments() {
                         lastName
                     )
                 `)
-                .in('request_id', requestIds)
+                .in('request_id', unassignedRequestIds)
                 .eq('status', 'approve');
 
             if (trackError) {
@@ -97,8 +125,8 @@ function PendingAssignments() {
                 });
             }
 
-            // Combine the data
-            const combinedData = approvedRequests.map(request => {
+            // Step 5: Combine the data
+            const combinedData = unassignedApprovedRequests.map(request => {
                 const trackRecord = trackRecordMap[request.request_id];
                 const staffInfo = trackRecord?.staffDB || {};
                 
@@ -122,7 +150,9 @@ function PendingAssignments() {
                     // Staff name who approved, or "Unknown" if no track record
                     approved_by: approvedByName,
                     // Client full name
-                    client: clientFullName
+                    client: clientFullName,
+                    // Add assignment status for debugging
+                    is_already_assigned: assignedIds.has(request.request_id)
                 };
             });
 
@@ -167,6 +197,16 @@ function PendingAssignments() {
 
     // Handle row click to show details
     const handleRowClick = async (request) => {
+        // Double-check if request is already assigned before showing details
+        const isAssigned = await checkIfAlreadyAssigned(request.request_id);
+        
+        if (isAssigned) {
+            alert('This request has already been assigned to someone.');
+            // Remove it from the list if it's already assigned
+            loadData();
+            return;
+        }
+        
         setSelectedRequest(request);
         setShowForm(true);
         setShowAssignForm(false);
@@ -174,10 +214,15 @@ function PendingAssignments() {
 
     // Handle Assign button click
     const handleAssignClick = async () => {
+        if (!selectedRequest) return;
+        
         const isAssigned = await checkIfAlreadyAssigned(selectedRequest.request_id);
         
         if (isAssigned) {
             alert('This request has already been assigned to someone.');
+            // Remove it from the list
+            loadData();
+            closeForm();
             return;
         }
         
@@ -194,20 +239,28 @@ function PendingAssignments() {
     const handleAssignSubmit = async (e) => {
         e.preventDefault();
         
-        if (!selectedSectionHeadId) {
+        if (!selectedSectionHeadId || !selectedRequest) {
             alert('Please select a Section Head');
             return;
         }
 
+        // Final check before assigning
         const isAssigned = await checkIfAlreadyAssigned(selectedRequest.request_id);
         if (isAssigned) {
             alert('This request has already been assigned to someone.');
+            loadData();
+            closeForm();
             return;
         }
 
         try {
             // Get selected section head details
             const selectedSectionHead = sectionHeads.find(sh => sh.staff_id === selectedSectionHeadId);
+            if (!selectedSectionHead) {
+                alert('Selected Section Head not found');
+                return;
+            }
+            
             const fullName = `${selectedSectionHead.firstName || ''} ${selectedSectionHead.lastName || ''}`.trim();
 
             // Insert into taskedTable - use request_id from the request object
@@ -217,45 +270,53 @@ function PendingAssignments() {
                     assignedBy: 'admin',
                     adminPosition: 'Administrator',
                     assignedHead: fullName,
-                    headPosition: null,
+                    headPosition: selectedSectionHead.position || 'Section Head',
                     assignedStaff: null,
-                    request_id: selectedRequest.request_id  // Use request_id, not id
+                    request_id: selectedRequest.request_id,
+                    status: 'assigned',
+                    assigned_at: new Date().toISOString()
                 });
 
             if (taskedError) throw taskedError;
 
-            // Update the clientFormrequest - only update fields that exist
-            const { error: requestError } = await supabase
-                .from('clientFormrequest')
-                .update({
-                    assignedTo: fullName,
-                    assignedToId: selectedSectionHead.staff_id,
-                    assignedToEmail: selectedSectionHead.email,
-                    status: 'assigned'
-                })
-                .eq('request_id', selectedRequest.request_id);  // Use request_id here too
-            
-            if (requestError) {
-                // If there's an error, check if it's because columns don't exist
-                console.log("Error updating clientFormrequest:", requestError);
-                
-                // Try a simpler update with only status
-                const { error: simpleError } = await supabase
+            // Update the clientFormrequest - try to update all fields
+            try {
+                // First attempt with all fields
+                const { error: requestError } = await supabase
                     .from('clientFormrequest')
                     .update({
-                        status: 'assigned'
+                        assignedTo: fullName,
+                        assignedToId: selectedSectionHead.staff_id,
+                        assignedToEmail: selectedSectionHead.email,
+                        status: 'assigned',
+                        updated_at: new Date().toISOString()
                     })
                     .eq('request_id', selectedRequest.request_id);
                 
-                if (simpleError) throw simpleError;
+                if (requestError) {
+                    // If error, try simpler update
+                    const { error: simpleError } = await supabase
+                        .from('clientFormrequest')
+                        .update({
+                            status: 'assigned',
+                            updated_at: new Date().toISOString()
+                        })
+                        .eq('request_id', selectedRequest.request_id);
+                    
+                    if (simpleError) throw simpleError;
+                }
+            } catch (updateError) {
+                console.error("Error updating clientFormrequest:", updateError);
+                // Continue even if update fails - the taskedTable entry is the important one
             }
             
+            // Refresh the list to remove this request
             loadData();
             alert('Request assigned successfully!');
             closeForm();
         } catch (error) {
             console.error("Error assigning request:", error);
-            alert('Failed to assign request.');
+            alert('Failed to assign request: ' + error.message);
         }
     };
 
@@ -373,7 +434,7 @@ function PendingAssignments() {
                                 </p>
                             </span>
 
-                            <span className="assign_btn mt-3">
+                            <span className="assign_btn mt-1">
                                 <button onClick={handleAssignClick}>Assign</button>
                             </span>
                         </div>

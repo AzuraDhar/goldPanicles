@@ -136,7 +136,7 @@ function ManagerialAccount() {
             </div>
 
             {showForm && (
-                <div className="delete_staff">
+                <div className="delete_staff4">
                     <div className="deleteform_header">
                         <span className="mt-3 ms-2">
                             <p className="mt-4">Delete account ?</p>

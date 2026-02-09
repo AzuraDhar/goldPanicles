@@ -9,9 +9,7 @@
 
     .admin_columnOne{
         height: 100dvh;
-        width: 30%;
-
-        background-color: aqua;
+        width: 25%;
 
         display: flex;
         flex-direction: column;
@@ -19,18 +17,68 @@
         align-items: center;
     }
 
-            .adminLogo{
-                height: 15%;
-                width: 100%;
+            .staffLogo{
+                        height: 15%;
+                        width: 100%;
 
-                background-color: rgb(238, 238, 175);
-            }
+                        display: flex;
+                        background-color: black !important;
+
+                        user-select: none;
+                    }
+
+                     .staffLogo .tgp_logo{
+                        height: 100%;
+                        width: 30%;
+
+                        display: flex;
+                        justify-content: flex-end;
+                        align-items: flex-end;
+                        background-color: black !important;
+                    }
+
+                    .staffLogo .tgp_logo .img_logo{
+                        height: 60% !important;
+                        width: 60%;
+                        display: flex;
+                    }
+                     .staffLogo .tgp_logo .img_logo img{
+                        z-index: 99;
+
+                        height: 100%;
+                        width: 100%;
+                     }
+
+                     .staffLogo .tgp_title{
+                        height: 100%;
+                        width: 70%;
+
+                       background-color: black !important;
+
+                        display: flex;
+                        align-items: flex-end;
+                    }
+
+                    .tgp_name{
+                        height: 50%;
+                        width: 100%;
+
+
+                        display: flex;
+                        align-items: center;
+
+                        font-size: 15px;
+                        font-weight: 700;
+                        
+                        color: #d8bc59;
+                    }
 
             .adminMenu{
                 height: 75%;
                 width: 100%;
 
-                background-color: rgb(17, 16, 16);
+                background-color: black !important;
+                user-select: none;
             }
 
                     .adminOptions{
@@ -58,16 +106,106 @@
                 height: 10%;
                 width: 100%;
 
-                background-color: rgb(239, 194, 126);
+                background-color: black;
+                user-select: none;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
+
+            .user_profile{
+                height: 70%;
+                width: 90%;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                background-color: rgb(72, 68, 68);
+            }
+
+                    .initials{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        text-align: center;
+                        height:80%;
+                        width: 13%;
+
+                        background-color: #ffffff;
+                        font-size: 20px;
+                        font-weight: 600;
+
+                        border-radius: 50%;
+
+                        color: rgb(0, 0, 0);
+                    }
+
+                    .user_acc{
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
+                        text-align: center;
+                        height: 100%;
+                        width: 83%;
+
+                        font-size:18px;
+                        font-weight: 600;
+
+                        color: white;
+                    }
 
 
 
     /*        Column Two                 */
 
+
+    .showmenu{
+        position: absolute;
+        height: 150px;
+        width: 300px;
+
+        left: 0;
+        bottom: 0;
+
+        margin-bottom: 65px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .showmenu .user_menu{
+        height: 40%;
+        width: 100%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        
+    }
+
+    .showmenu .user_menu span{
+        height: 90%;
+        width: 100%;
+
+        background-color: #9d9579;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        border-radius: 5px;
+
+        user-select: none;
+        cursor: pointer;
+    }
+
     .admin_columnTwo{
         height: 100dvh;
-        width: 70%;
+        width: 75%;
 
         background-color: aliceblue;
 
@@ -78,4 +216,65 @@
         flex-direction: column;
 
         overflow-y: hidden;
+    }
+
+    .user_Acc{
+        position: absolute;
+
+        height: 100%;
+        width: 75%;
+
+        margin-left: 25%;
+
+        background-color: #9d9579;
+
+        z-index: 99;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .userprofile_container{
+        height: 80%;
+        width: 80%;
+
+        background-color: aliceblue;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .user_col1{
+        height: 100%;
+        width: 25%;
+
+        background-color: antiquewhite;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+        .userprofile_img{
+            height: 30%;
+            width: 100%;
+
+            background-color: #d6c791;
+        }
+
+        .userinfo{
+            height: 70%;
+            width: 100%;
+
+            background-color: #d8bc59;
+        }
+
+    .user_col2{
+        height: 100%;
+        width: 75%;
+
+        background-color: rgb(180, 133, 72);
     }

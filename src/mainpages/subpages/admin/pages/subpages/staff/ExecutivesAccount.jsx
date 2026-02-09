@@ -136,7 +136,7 @@ function ExecutivesAccount() {
             </div>
 
             {showForm && (
-                <div className="delete_staff">
+                <div className="delete_staff2">
                     <div className="deleteform_header">
                         <span className="mt-3 ms-2">
                             <p className="mt-4">Delete account ?</p>
@@ -148,11 +148,11 @@ function ExecutivesAccount() {
                             ×
                         </button>
                     </div>
-                    <div className="deleteform_body mt-2">
+                    <div className="deleteform_body2 mt-2">
                         <span className="question">
                             <p className="mt-3 ms-2">Are you sure you want to delete <br /> this account ?</p>
                         </span>
-                        <span className="delete_buttons">
+                        <span className="delete_buttons mt-4">
                             <button>Cancel</button>
                             <button className="bg-danger">Delete</button>
                         </span>

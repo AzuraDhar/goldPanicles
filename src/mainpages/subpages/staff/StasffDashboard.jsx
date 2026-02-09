@@ -6,6 +6,8 @@ import MyCalendar from "./pages/MyCalendar";
 import StaffSchedule from "./pages/StaffSchedule";
 import StaffAssignmentManagement from "./pages/StaffAssignmentManagement";
 
+import logo from '../../../assets/image/tgp.png';
+
 
 
 import './StaffDashboard.css';
@@ -39,9 +41,25 @@ function StaffDashboard(){
 
                 <div className="staff_columnOne">
 
-                    <div className="staffLogo">
-
-                    </div>
+                                            <div className="staffLogo">
+                    
+                                                <span className="tgp_logo">
+                    
+                                                    <span className="img_logo">
+                                                            <img src={logo} />
+                                                    </span>
+                    
+                                                </span>
+                    
+                                                <span className="tgp_title">
+                    
+                                                        <span className="tgp_name">
+                                                            <p className="mt-4">THE GOLD PANICLES</p>
+                                                        </span>
+                    
+                                                </span>
+                    
+                                            </div>
 
                     <div className="staffMenu">
 

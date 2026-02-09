@@ -4,6 +4,8 @@ import './ClientDashboard.css';
 import ClientCalendar from './pages/ClientCalendar.jsx';
 import ClientRequest from './pages/ClientRequest.jsx';
 
+import logo from '../../../assets/image/tgp.png';
+
 function ClientDashboard(){
 
     const [activeTab, setActiveTab] = useState('calendar');
@@ -26,6 +28,22 @@ function ClientDashboard(){
             <div className="clientColumnOne">
 
                         <div className="clientLogo">
+
+                            <span className="tgp_logo">
+
+                                <span className="img_logo">
+                                        <img src={logo} />
+                                </span>
+
+                            </span>
+
+                            <span className="tgp_title">
+
+                                    <span className="tgp_name">
+                                        <p className="mt-4">THE GOLD PANICLES</p>
+                                    </span>
+
+                            </span>
 
                         </div>
 

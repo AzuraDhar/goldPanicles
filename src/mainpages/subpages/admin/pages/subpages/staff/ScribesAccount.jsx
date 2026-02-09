@@ -136,7 +136,7 @@ function ScribesAccount() {
             </div>
 
             {showForm && (
-                <div className="delete_staff">
+                <div className="delete_staff3">
                     <div className="deleteform_header">
                         <span className="mt-3 ms-2">
                             <p className="mt-4">Delete account ?</p>
@@ -152,7 +152,7 @@ function ScribesAccount() {
                         <span className="question">
                             <p className="mt-3 ms-2">Are you sure you want to delete <br /> this account ?</p>
                         </span>
-                        <span className="delete_buttons">
+                        <span className="delete_buttons mt-4">
                             <button>Cancel</button>
                             <button className="bg-danger">Delete</button>
                         </span>

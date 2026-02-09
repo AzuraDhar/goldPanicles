@@ -10,7 +10,7 @@
 }
 
         .clientColumnOne{
-            width: 30%;
+            width: 25%;
             height: 100%;
 
             background-color: rgba(11, 12, 12, 0.942);
@@ -24,7 +24,53 @@
                         height: 15%;
                         width: 100%;
 
-                        background-color: bisque;
+                        display: flex
+                    }
+
+                     .clientLogo .tgp_logo{
+                        height: 100%;
+                        width: 30%;
+
+                        display: flex;
+                        justify-content: flex-end;
+                        align-items: flex-end;
+                        background-color: rgba(11, 12, 12, 0.942);
+                    }
+
+                    .clientLogo .tgp_logo .img_logo{
+                        height: 80%;
+                        width: 60%;
+                        display: flex;
+                    }
+                     .clientLogo .tgp_logo .img_logo img{
+                        z-index: 99;
+
+                        height: 100%;
+                        width: 100%;
+                     }
+
+                     .clientLogo .tgp_title{
+                        height: 100%;
+                        width: 70%;
+
+                       background-color: rgba(11, 12, 12, 0.942);
+
+                        display: flex;
+                        align-items: flex-end;
+                    }
+
+                    .tgp_name{
+                        height: 50%;
+                        width: 100%;
+
+
+                        display: flex;
+                        align-items: center;
+
+                        font-size: 15px;
+                        font-weight: 700;
+                        
+                        color: #d8bc59;
                     }
 
                     .clientMenu{
@@ -66,7 +112,7 @@
 
 
         .clientColumnTwo{
-            width: 70%;
+            width: 75%;
             height: 100%;
 
             display: flex;
