@@ -23,14 +23,17 @@ function LogInPage() {
       if (result.success) {
         const user = result.data;
         console.log("Logged in user:", user);
-        
+
         // Use the storeUserData function to handle storage
         storeUserData(user);
 
         console.log("localStorage user:", localStorage.getItem("user"));
         console.log("sessionStorage userId:", sessionStorage.getItem("userId"));
-        console.log("sessionStorage userRole:", sessionStorage.getItem("userRole"));
-        
+        console.log(
+          "sessionStorage userRole:",
+          sessionStorage.getItem("userRole"),
+        );
+
         // Role-based redirection
         switch (user.role) {
           case "Administrator":
@@ -47,7 +50,9 @@ function LogInPage() {
             break;
           default:
             navigate("/login");
-            alert(`Role "${user.role}" not recognized. Please contact administrator.`);
+            alert(
+              `Role "${user.role}" not recognized. Please contact administrator.`,
+            );
         }
       } else {
         alert(result.message || "Invalid email or password");
@@ -61,74 +66,59 @@ function LogInPage() {
   };
 
   return (
-    <div className="login_mainbody">
-      <div className="login_container">
-        <div className="column1"></div>
+    <div className="login_page">
+      {/* LEFT PANEL */}
+      <div className="column1"></div>
 
-        <div className="column2">
-          <div className="logform">
-            <div className="form_title"></div>
-
-            <form onSubmit={handleSubmit}>
-              <p>
-                <i>"We never flinch in serving you the truth"</i>
-              </p>
-
-              {/* Email */}
-              <div className="input-group input-group-sm mb-3 mt-4">
-                <span className="input-group-text">
-                  <span className="icon me-3">
-                    <MdOutlineEmail />
-                  </span>
-                  Email
-                </span>
-                <input
-                  type="email"
-                  className="form-control"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  disabled={loading}
-                />
-              </div>
-
-              {/* Password */}
-              <div className="input-group input-group-sm mb-3">
-                <span className="input-group-text">
-                  <span className="icon me-2">
-                    <IoLockClosedOutline />
-                  </span>
-                  Password
-                </span>
-                <input
-                  type="password"
-                  className="form-control"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  disabled={loading}
-                />
-              </div>
-
-              {/* Submit */}
-              <button 
-                type="submit" 
-                className="btn mt-3"
-                disabled={loading}
-              >
-                <span className="icon me-2">
-                  <span className="icon_log me-2">
-                    <LuLogIn className="icon-adjust" />
-                  </span>
-                  {loading ? "LOGGING IN..." : "LOGIN"}
-                </span>
-              </button>
-            </form>
-
-            <p className="sign_fontsize mt-2">
-              Don't have an Account ? <Link to="/signup">Sign up</Link>
+      {/* RIGHT PANEL */}
+      <div className="column2">
+        <div className="logform">
+          <div className="form_header">
+            <img src="/img/tgp.png" alt="Logo" className="form_logo" />
+            <p>
+              <i>We never flinch in serving you the truth</i>
             </p>
           </div>
+
+          <form onSubmit={handleSubmit}>
+            {/* Email */}
+            <div className="input-group input-group-sm mb-3 mt-4">
+              <input
+                type="email"
+                placeholder="Email"
+                className="form-control"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                disabled={loading}
+              />
+            </div>
+
+            {/* Password */}
+            <div className="input-group input-group-sm mb-3">
+              <input
+                type="password"
+                placeholder="Password"
+                className="form-control"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                disabled={loading}
+              />
+            </div>
+
+            {/* Submit */}
+            <button type="submit" className="btn mt-3" disabled={loading}>
+              <span className="icon me-2">
+                <LuLogIn className="icon-adjust me-2" />
+                {loading ? "Logging in..." : "Login"}
+              </span>
+            </button>
+          </form>
+
+          <p className="sign_fontsize mt-3">
+            Don't have an Account? <Link to="/signup">Sign up</Link>
+          </p>
         </div>
       </div>
     </div>
