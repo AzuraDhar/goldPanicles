@@ -2,7 +2,7 @@
     height: 10%;
     width: 100%;
 
-    background-color: rgb(95, 138, 124);
+    background-color: white;
     
     display: flex;
 
@@ -14,7 +14,7 @@
     height: 90%;
     width: 100%;
 
-    background-color: rgb(86, 208, 168);
+    background-color: white;
 
     overflow-y: auto;
     overflow-x: hidden;
@@ -31,10 +31,11 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    
 }
 
 .deny_box span button{
-    background-color: #0D6FFC;
+    background-color: #89b4ef;
 
     height: 35px;
     width: 100px;

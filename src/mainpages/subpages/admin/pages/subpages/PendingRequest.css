@@ -1,28 +1,29 @@
 .pending_header{
     height: 10%;
     width: 100%;
-
-    background-color: rgb(95, 138, 124);
     
     display: flex;
 
     border-bottom: 1px solid black;
+    background-color: white;
 }
 
 .pending_body{
     height: 90%;
     width: 100%;
 
-    background-color: rgb(86, 208, 168);
-
     overflow-y: auto;
     overflow-x: hidden;
+
+    background-color: white;
 }
 
 .pending_body .row{
     border-bottom: 1px solid black;
 
     cursor: pointer;
+
+    background-color: white;
 }
 
 

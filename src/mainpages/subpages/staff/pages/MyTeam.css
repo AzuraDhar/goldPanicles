@@ -2,7 +2,7 @@
     height: 90%;
     width: 90%;
 
-    background-color: #fdf9f9;
+    background-color: white;
 }
 
 .myteam_title{
@@ -15,7 +15,7 @@
     height: 10%;
     width: 100%;
 
-    background-color: bisque;
+    background-color: white !important;
 
     display: flex;
     justify-content: flex-start;

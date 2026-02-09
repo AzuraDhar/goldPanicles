@@ -12,17 +12,17 @@
     user-select: none;
 }
 
-.staff_header{
+.staff_header1{
     height: 10%;
     width: 100%;
 
-    background-color: rgb(197, 243, 243);
+    background-color: white;
 
     display: flex;
 }
 
-.staff_header span{
-    width: 25%;
+.staff_header1 span{
+    width: 25% !important;
 }
 
 .staff_body{

@@ -12,7 +12,7 @@
     height: 10%;
     width: 100%;
 
-    background-color: aliceblue;
+    background-color: white !important;
     display: flex;
     user-select: none;
 }
@@ -26,6 +26,8 @@
     border-top: 1px solid black;
 
     font-weight: 600;
+
+    background-color: white !important;
 }
 .timeSpan{
     border-left: 1px solid black;
@@ -61,7 +63,7 @@
 .timeColumn span{
     flex: 1;
     border-bottom: 1px solid black;
-    background-color: azure;
+    background-color: white !important;
     border-left: 1px solid black;
 
     font-size: 12px;

@@ -30,7 +30,7 @@
                 height: 75%;
                 width: 100%;
 
-                background-color: antiquewhite;
+                background-color: black !important;
             }
 
                     .staffOptions{
@@ -68,7 +68,7 @@
         height: 100dvh;
         width: 70%;
 
-        background-color: aquamarine;
+        background-color: aliceblue !important;
 
         display: flex;
         justify-content: center;

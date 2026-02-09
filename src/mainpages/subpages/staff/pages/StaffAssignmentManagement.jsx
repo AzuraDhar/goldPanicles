@@ -27,7 +27,7 @@ function MyCoverage(){
 
             <div className="staff_mainbody">
 
-                    <div className="staff_header">
+                    <div className="staff_header1">
 
                         <span 
                                 className={`pending_tab mt-4 ms-1 ${activeTab === 'pending' ? 'active' : ''}`}

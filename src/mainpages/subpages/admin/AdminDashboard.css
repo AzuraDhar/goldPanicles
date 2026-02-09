@@ -30,7 +30,7 @@
                 height: 75%;
                 width: 100%;
 
-                background-color: antiquewhite;
+                background-color: rgb(17, 16, 16);
             }
 
                     .adminOptions{
@@ -47,10 +47,11 @@
                         width: 90%;
                         padding-top: 8px;
 
-                        background-color: rgba(82, 93, 177, 0.67);
                         text-align: center;
 
                         font-weight: 600;
+
+                        color: white;
                     }
 
             .adminUserProfile{
@@ -68,7 +69,7 @@
         height: 100dvh;
         width: 70%;
 
-        background-color: aquamarine;
+        background-color: aliceblue;
 
         display: flex;
         justify-content: center;

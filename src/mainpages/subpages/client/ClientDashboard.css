@@ -13,7 +13,7 @@
             width: 30%;
             height: 100%;
 
-            background-color: rgba(176, 201, 201, 0.942);
+            background-color: rgba(11, 12, 12, 0.942);
 
             display: flex;
             justify-content: center;
@@ -31,7 +31,9 @@
                         height: 75%;
                         width: 100%;
 
-                        background-color: antiquewhite;
+                        background-color: rgba(11, 12, 12, 0.942);
+
+                        color: aliceblue;
                     }
 
                                 .clientOptions{
@@ -49,7 +51,7 @@
                                     padding-top: 8px;
                                     margin-top: 3%;
 
-                                    background-color: rgba(82, 93, 177, 0.67);
+                                    background-color: #373737 !important;
                                     text-align: center;
 
                                     font-weight: 600;
@@ -72,5 +74,6 @@
             align-items: center;
 
             flex-direction: column;
+            background-color: aliceblue;
         }
         

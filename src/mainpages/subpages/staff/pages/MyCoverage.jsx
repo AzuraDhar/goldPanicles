@@ -18,7 +18,7 @@ function MyCoverage(){
             case 'assignment':
                 return <Assignment />;
             default:
-                return <Invitation />;
+                return <Assignment/>;
         }
     }
 
@@ -28,14 +28,6 @@ function MyCoverage(){
             <div className="staff_mainbody">
 
                     <div className="staff_header">
-
-                        <span 
-                                className={`pending_tab mt-4 ms-1 ${activeTab === 'invitation' ? 'active' : ''}`}
-                                onClick={() => setActiveTab('invitation')}
-                                style={{cursor: 'pointer'}}
-                                >
-                                <span>Invitation</span>
-                        </span>
 
                         <span 
                                 className={`pending_tab mt-4 ms-3 ${activeTab === 'assignment' ? 'active' : ''}`}

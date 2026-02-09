@@ -29,7 +29,16 @@ function ClientCalendar() {
   const [currentUser, setCurrentUser] = useState(null);
   const [userId, setUserId] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [monthEvents, setMonthEvents] = useState({}); // Store events by date for the current month view
   const fileInputRef = useRef(null);
+
+  // Format date as YYYY-MM-DD for Supabase
+  const formatDateForQuery = (date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
 
   // Get current user on component mount
   useEffect(() => {
@@ -69,6 +78,200 @@ function ClientCalendar() {
     
     return () => {
       // Cleanup if needed
+    };
+  }, []);
+
+  // Load events for the current month view
+  const loadMonthEvents = async (date) => {
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    
+    // Calculate start and end of month
+    const firstDay = new Date(year, month - 1, 1);
+    const lastDay = new Date(year, month, 0);
+    
+    const startDate = formatDateForQuery(firstDay);
+    const endDate = formatDateForQuery(lastDay);
+    
+    try {
+      // Fetch events from both tables for the entire month
+      const [clientEventsResponse, adminEventsResponse] = await Promise.all([
+        supabase
+          .from('clientFormrequest')
+          .select('*')
+          .gte('date', startDate)
+          .lte('date', endDate),
+        supabase
+          .from('adminEvent')
+          .select('*')
+          .gte('date', startDate)
+          .lte('date', endDate)
+      ]);
+      
+      const clientEvents = clientEventsResponse.data || [];
+      const adminEvents = adminEventsResponse.data || [];
+      
+      // Combine all events
+      const allEvents = [...clientEvents, ...adminEvents];
+      
+      // Group events by date
+      const eventsByDate = {};
+      allEvents.forEach(event => {
+        if (!eventsByDate[event.date]) {
+          eventsByDate[event.date] = [];
+        }
+        eventsByDate[event.date].push(event);
+      });
+      
+      setMonthEvents(eventsByDate);
+    } catch (error) {
+      console.error('Error loading month events:', error);
+    }
+  };
+
+  // Handle active start date change (when month changes)
+  const handleActiveStartDateChange = ({ activeStartDate }) => {
+    loadMonthEvents(activeStartDate);
+  };
+
+  // Tile content function to show rectangle indicators for dates with events
+  const tileContent = ({ date, view }) => {
+    if (view === 'month') {
+      const dateStr = formatDateForQuery(date);
+      const dateEvents = monthEvents[dateStr];
+      
+      if (dateEvents && dateEvents.length > 0) {
+        return (
+          <div className="calendar-event-indicator">
+            <div className="event-indicator-bar">
+              <div 
+                className="event-indicator"
+                title={`${dateEvents.length} event(s) scheduled`}
+              >
+                EVENT
+              </div>
+            </div>
+          </div>
+        );
+      }
+    }
+    return null;
+  };
+
+  // Load events for current month on initial render and when month changes
+  useEffect(() => {
+    // Add CSS for the event indicators
+    const style = document.createElement('style');
+    style.textContent = `
+      .react-calendar__tile {
+        position: relative;
+        min-height: 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      
+      .calendar-event-indicator {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 2px;
+        border-top: 1px solid rgba(255, 255, 255, 0.3);
+        background-color: rgba(255, 255, 255, 0);
+        z-index: 1;
+      }
+      
+      .event-indicator-bar {
+        display: flex;
+        justify-content: center;
+      }
+      
+      .event-indicator {
+        height: 18px;
+        width: 100%;
+        border-radius: 3px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        font-weight: bold;
+        color: white;
+        background-color: #dc3545; /* Red background */
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        cursor: default;
+        transition: all 0.2s ease;
+      }
+      
+      .react-calendar__tile:hover .event-indicator {
+        background-color: #c82333; /* Darker red on hover */
+        transform: scale(1.02);
+      }
+      
+      .react-calendar__tile--now {
+        background-color: #fff3cd;
+      }
+      
+      .react-calendar__tile--now .calendar-event-indicator {
+        background-color: rgba(255, 243, 205, 0);
+      }
+      
+      .react-calendar__tile--active {
+        background-color: #0d6efd;
+        color: white;
+      }
+      
+      .react-calendar__tile--active .calendar-event-indicator {
+        background-color: rgba(13, 110, 253, 0);
+        border-top-color: rgba(255, 255, 255, 0.3);
+      }
+      
+      .react-calendar__tile--active .event-indicator {
+        color: white;
+        background-color: #ff6b6b; /* Lighter red for active dates */
+      }
+      
+      .react-calendar__month-view__days__day {
+        overflow: hidden;
+      }
+      
+      .react-calendar__tile abbr {
+        z-index: 2;
+        position: relative;
+      }
+      
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .event-indicator {
+          font-size: 8px;
+          height: 16px;
+        }
+        
+        .react-calendar__tile {
+          min-height: 70px;
+        }
+      }
+      
+      @media (max-width: 576px) {
+        .event-indicator {
+          font-size: 7px;
+          height: 14px;
+          letter-spacing: 0.3px;
+        }
+        
+        .react-calendar__tile {
+          min-height: 60px;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Load events for current month on initial render
+    loadMonthEvents(new Date());
+
+    return () => {
+      document.head.removeChild(style);
     };
   }, []);
 
@@ -358,6 +561,10 @@ function ClientCalendar() {
         });
         
         setSubmitMessage('✅ Form submitted successfully!');
+        
+        // Refresh the month events to show the newly added event
+        loadMonthEvents(date);
+        
         setTimeout(() => {
           closeForm();
         }, 2000);
@@ -396,6 +603,8 @@ function ClientCalendar() {
             onChange={onChange}
             value={date}
             locale="en-US"
+            tileContent={tileContent}
+            onActiveStartDateChange={handleActiveStartDateChange}
           />
         </div>
       </div>

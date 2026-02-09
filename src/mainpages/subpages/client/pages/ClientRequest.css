@@ -2,12 +2,13 @@
     height: 90%;
     width: 90%;
 
-    background-color: aliceblue;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    background-color: white 
 }
 
 .clientDisplayTitle{
@@ -26,19 +27,19 @@
     height: 92%;
     width: 100%;
 
-    background-color: aliceblue;
+    background-color:white;
 
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding: 10px;
 }
 
                 .clientDisplayHeader{
                     height: 8%;
                     width: 100%;
 
-                    background-color: aliceblue;
 
                     border-bottom: 1px solid black;
                 }
@@ -57,8 +58,6 @@
                 .clientDisplayRequests{
                     height: 92%;
                     width: 100%;
-
-                    background-color: aliceblue;
 
                     position: relative;
 
