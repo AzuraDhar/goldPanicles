@@ -94,7 +94,6 @@
                         width: 90%;
                         padding-top: 8px;
 
-                        background-color: rgba(82, 93, 177, 0.67);
                         text-align: center;
 
                         font-weight: 600;
@@ -104,7 +103,7 @@
                 height: 10%;
                 width: 100%;
 
-                background-color: rgb(239, 194, 126);
+                background-color: black !important;
             }
 
 
@@ -124,4 +123,471 @@
         flex-direction: column;
 
         overflow-y: hidden;
+    }
+
+    .staffMain_Body{
+    height: 100dvh;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .staff_columnOne{
+        height: 100dvh;
+        width: 25% !important;
+
+        background-color: aqua;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+            .staffLogo{
+                        height: 15%;
+                        width: 100%;
+
+                        display: flex;
+                        background-color: black !important;
+
+                        user-select: none; /* Added from AdminDashboard */
+                    }
+
+                     .staffLogo .tgp_logo{
+                        height: 100%;
+                        width: 30%;
+
+                        display: flex;
+                        justify-content: flex-end;
+                        align-items: flex-end;
+                        background-color: black !important;
+                    }
+
+                    .staffLogo .tgp_logo .img_logo{
+                        height: 80%;
+                        width: 60%;
+                        display: flex;
+                    }
+                     .staffLogo .tgp_logo .img_logo img{
+                        z-index: 99;
+
+                        height: 100%;
+                        width: 100%;
+                     }
+
+                     .staffLogo .tgp_title{
+                        height: 100%;
+                        width: 70%;
+
+                       background-color: black !important;
+
+                        display: flex;
+                        align-items: flex-end;
+                    }
+
+                    .tgp_name{
+                        height: 50%;
+                        width: 100%;
+
+
+                        display: flex;
+                        align-items: center;
+
+                        font-size: 15px;
+                        font-weight: 700;
+                        
+                        color: #d8bc59;
+                    }
+
+            .staffMenu{
+                height: 75%;
+                width: 100%;
+
+                background-color: black !important;
+                user-select: none; /* Added from AdminDashboard */
+            }
+
+                    .staffOptions{
+                        height: 90%;
+                        width: 100%;
+
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                    }
+
+                    .options{
+                        height: 10%;
+                        width: 90%;
+                        padding-top: 8px;
+
+                        background-color: rgba(82, 93, 177, 0.67);
+                        text-align: center;
+
+                        font-weight: 600;
+                        
+                        color: white; /* Added from AdminDashboard */
+                    }
+
+            .staffUserProfile{
+                height: 10%;
+                width: 100%;
+
+                background-color: rgb(239, 194, 126);
+                
+                /* Added from AdminDashboard */
+                background-color: black;
+                user-select: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            /* Added from AdminDashboard */
+            .user_profile{
+                height: 65%;
+                width: 90%;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                background-color: rgb(72, 68, 68);
+                cursor: pointer;
+            }
+
+            /* Added from AdminDashboard */
+            .initials{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                height:75%;
+                width: 11%;
+
+                background-color: #ffffff;
+                font-size: 20px;
+                font-weight: 600;
+
+                border-radius: 50%;
+
+                color: rgb(0, 0, 0);
+            }
+
+            /* Added from AdminDashboard */
+            .user_acc{
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                text-align: center;
+                height: 100%;
+                width: 83%;
+
+                font-size:18px;
+                font-weight: 600;
+
+                color: white;
+            }
+
+
+
+    /*        Column Two                 */
+
+    .staff_columnTwo{
+        height: 100dvh;
+        width: 75% !important; 
+
+        background-color: aliceblue !important;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        flex-direction: column;
+
+        overflow-y: hidden;
+    }
+
+/* Added from AdminDashboard - Profile Panel Styles */
+.showmenu{
+    position: absolute;
+    height: 150px;
+    width: 340px;
+
+    left: 0;
+    bottom: 0;
+
+    margin-bottom: 65px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.showmenu .user_menu{
+    height: 40%;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.showmenu .user_menu span{
+    height: 90%;
+    width: 100%;
+
+    background-color: #373737;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 5px;
+
+    user-select: none;
+    cursor: pointer;
+
+    color: white;
+}
+
+/* Added from AdminDashboard - User Account Panel */
+.user_Acc{
+    position: absolute;
+
+    height: 100%;
+    width: 75%;
+
+    margin-left: 25%;
+
+    background-color: aliceblue;
+
+    z-index: 99;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.userprofile_container{
+    height: 80%;
+    width: 80%;
+
+    background-color: aliceblue;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+.user_col1{
+    height: 100%;
+    width: 25%;
+
+    background-color: rgb(0, 0, 0);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    user-select: none;
+}
+
+    .userprofile_img{
+        height: 27%;
+        width: 78%;
+
+        background-color: #d6c791;
+
+        border-radius: 50%
+    }
+
+    .userinfo{
+        height: 72%;
+        width: 100%;
+
+        background-color: #000000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .userinfo .userinfo_container{
+        height: 90%;
+        width: 90%;
+
+        background-color: #000000;
+
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+
+        gap: 10px;
+    }
+
+    .userinfo_container span{
+        height: 40px;
+        width: 90%;
+
+        background-color: #373737;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        font-weight: 600;
+        color: white;
+        cursor: pointer;
+    }
+
+
+
+/* Added from AdminDashboard - Profile Tab */
+.user_col2_one{
+    height: 100%;
+    width: 75%;
+
+    background-color: rgb(180, 133, 72);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    user-select: none;
+}
+
+    .user_col2_one .user_row{
+        height: 50%;
+        width: 100%;
+
+        background-color: rgb(255, 255, 255);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .user_imgprofile{
+        height: 85%;
+        width: 38%;
+
+        background-color: #9d9579;
+        border-radius: 50%;
+
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+    }
+    .user_imglogo{
+        height: 50px;
+        width: 50px;
+
+        background-color: rgb(77, 71, 71);
+
+        border-radius: 50%;
+    }
+
+     .user_imglogo img{
+        height: 100%;
+        width: 100%;
+     }
+
+    .profile{
+        justify-content: flex-start !important;
+    }
+
+    .userName{
+        height: 25%;
+        width: 100%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+      .userName span{
+        height: 50%;
+        width: 25%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        border: 1px solid black;
+     }
+
+     .save_user{
+        background-color: #0d6efd;
+     }
+
+/* Added from AdminDashboard - Password Tab */
+.user_col2_two{
+    height: 100%;
+    width: 75%;
+
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    user-select: none;
+}
+
+    .user_col2_two .user_row{
+        height: 50%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .password_choice{
+        height: 50%;
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .password_choice button{
+        background-color: #0d6efd;
+    }
+
+/* Added from AdminDashboard - Delete Account Tab */
+.user_col2_three{
+    height: 100%;
+    width: 75%;
+
+    background-color: rgb(180, 133, 72);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    user-select: none;
+}
+
+    .user_col2_three .user_row{
+        height: 50%;
+        width: 100%;
+
+        background-color: rgb(255, 255, 255);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .delete_user{
+        background-color: #dc3545;
+        color: white;
     }

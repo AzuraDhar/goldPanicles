@@ -115,7 +115,7 @@
             }
 
             .user_profile{
-                height: 70%;
+                height: 65%;
                 width: 90%;
 
                 display: flex;
@@ -130,8 +130,8 @@
                         justify-content: center;
                         align-items: center;
                         text-align: center;
-                        height:80%;
-                        width: 13%;
+                        height:75%;
+                        width: 11%;
 
                         background-color: #ffffff;
                         font-size: 20px;
@@ -164,7 +164,7 @@
     .showmenu{
         position: absolute;
         height: 150px;
-        width: 300px;
+        width: 340px;
 
         left: 0;
         bottom: 0;
@@ -184,15 +184,13 @@
         display: flex;
         justify-content: center;
         align-items: center;
-
-        
     }
 
     .showmenu .user_menu span{
         height: 90%;
         width: 100%;
 
-        background-color: #9d9579;
+        background-color: #373737;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -201,6 +199,8 @@
 
         user-select: none;
         cursor: pointer;
+
+        color: white;
     }
 
     .admin_columnTwo{
@@ -226,7 +226,7 @@
 
         margin-left: 25%;
 
-        background-color: #9d9579;
+        background-color: aliceblue;
 
         z-index: 99;
 
@@ -244,37 +244,211 @@
         display: flex;
         justify-content: center;
         align-items: center;
+
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
     }
 
     .user_col1{
         height: 100%;
         width: 25%;
 
-        background-color: antiquewhite;
+        background-color: rgb(0, 0, 0);
 
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
+
+        user-select: none;
     }
 
         .userprofile_img{
-            height: 30%;
-            width: 100%;
+            height: 27%;
+            width: 78%;
 
             background-color: #d6c791;
+
+            border-radius: 50%
         }
 
         .userinfo{
-            height: 70%;
+            height: 72%;
             width: 100%;
 
-            background-color: #d8bc59;
+            background-color: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
 
-    .user_col2{
+        .userinfo .userinfo_container{
+            height: 90%;
+            width: 90%;
+
+            background-color: #000000;
+
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: column;
+
+            gap: 10px;
+        }
+
+        .userinfo_container span{
+            height: 40px;
+            width: 90%;
+
+            background-color: #373737;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-weight: 600;
+            color: white;
+        }
+
+
+
+    .user_col2_one{
         height: 100%;
         width: 75%;
 
         background-color: rgb(180, 133, 72);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        user-select: none;
     }
+
+        .user_col2_one .user_row{
+            height: 50%;
+            width: 100%;
+
+            background-color: rgb(255, 255, 255);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .user_imgprofile{
+            height: 85%;
+            width: 38%;
+
+            background-color: #9d9579;
+            border-radius: 50%;
+
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+        }
+        .user_imglogo{
+            height: 50px;
+            width: 50px;
+
+            background-color: rgb(77, 71, 71);
+
+            border-radius: 50%;
+        }
+
+         .user_imglogo img{
+            height: 100%;
+            width: 100%;
+         }
+
+        .profile{
+            justify-content: flex-start !important;
+        }
+
+        .userName{
+            height: 25%;
+            width: 100%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+          .userName span{
+            height: 50%;
+            width: 25%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border: 1px solid black;
+         }
+
+         .save_user{
+            background-color: #0d6efd;
+         }
+
+.user_col2_two{
+        height: 100%;
+        width: 75%;
+
+        background-color: rgb(255, 255, 255);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        user-select: none;
+    }
+
+        .user_col2_two .user_row{
+            height: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .password_choice{
+            height: 50%;
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .password_choice button{
+            background-color: #0d6efd;
+        }
+
+
+
+.user_col2_three{
+        height: 100%;
+        width: 75%;
+
+        background-color: rgb(180, 133, 72);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        user-select: none;
+    }
+
+        .user_col2_three .user_row{
+            height: 50%;
+            width: 100%;
+
+            background-color: rgb(255, 255, 255);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .delete_user{
+            background-color: #dc3545;
+            color: white;
+        }
