@@ -1,201 +1,216 @@
-.signUp_mainBody{
-    height: 100vh;
-    width: 100%;
-    background-color: rgb(230, 229, 229);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 15px; /* Add padding for mobile */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+
+.signUp_mainBody {
+  height: 100vh;
+  width: 100%;
+  background-color: whitesmoke;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px; /* Add padding for mobile */
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+  color: #111827;
 }
 
-.signUp_formContainer{
-    height: auto; /* Change from 80% to auto */
-    min-height: 500px; /* Minimum height */
-    width: 100%; /* Change from 40% to 100% */
-    max-width: 500px; /* Maximum width for larger screens */
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+.signUp_formContainer {
+  height: auto;
+  min-height: 500px;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 15px; /* combined top-left and top-right */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 24px; /* optional, for spacing inside */
 }
 
-.signUp_title{
-    height: auto; /* Change from 15% to auto */
-    min-height: 70px; /* Add min-height */
-    width: 100%;
-    background-color: rgb(212, 210, 210);
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.signUp_title {
+  height: auto; /* Change from 15% to auto */
+  min-height: 70px; /* Add min-height */
+  width: 100%;
+  background-color: #171717;
+  color: whitesmoke;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.signUp_title p{
-    font-size: 25px;
-    font-weight: 600;
-    margin: 0; /* Remove default margin */
+.signUp_title p {
+  font-size: 25px;
+  font-weight: 600;
+  margin: 0; /* Remove default margin */
 }
 
-.signUp_formContainer form{
-    height: auto; /* Change from 85% to auto */
-    width: 100%;
-    background-color: aliceblue;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
-    padding: 20px 0; /* Add vertical padding */
+.signUp_formContainer form {
+  height: auto; /* Change from 85% to auto */
+  width: 100%;
+  background-color: whitesmoke;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px 0; /* Add vertical padding */
+  background-color: #ffffff; /* or any color you prefer */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* soft shadow */
 }
 
-.signUp_formContainer form div{
-    width: 80%;
-    height: 45px;
-    margin-bottom: 15px; /* Add spacing between inputs */
+.signUp_formContainer form div {
+  width: 80%;
+  height: 45px;
+  margin-bottom: 15px; /* Add spacing between inputs */
 }
 
-.signUp_formContainer form .input-group{
-    gap: 20px;
-    width: 80% !important;
-    margin-bottom: 15px; /* Add spacing */
+.signUp_formContainer form .input-group {
+  gap: 20px;
+  width: 80% !important;
+  margin-bottom: 15px; /* Add spacing */
 }
 
 .signUp_formContainer form .input-groupone input {
-    width: 100%;
+  width: 100%;
 }
 
 .form-control:focus {
-    box-shadow: none;
+  box-shadow: none;
 }
 
 input:focus-visible {
-    border-color: red !important;
+  border-color: red !important;
 }
 
 .signUp_formContainer form .input-group span {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    padding-right: 10px;
-    cursor: pointer;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
+  cursor: pointer;
 }
 
 .password-wrapper {
-    position: relative;
-    width: 80% !important;
+  position: relative;
+  width: 80% !important;
 }
 
 .password-wrapper input {
-    border-bottom-right-radius: 8px !important;
-    border-top-right-radius: 8px !important;
+  border-bottom-right-radius: 8px !important;
+  border-top-right-radius: 8px !important;
 }
 
 .password-eye {
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    color: #555;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #555;
 }
 
-.dropdowntoggle{
-    display: flex;
-    gap: 10px;
-    width: 80% !important; /* Match other inputs width */
-    margin-bottom: 15px;
+.dropdowntoggle {
+  display: flex;
+  gap: 10px;
+  width: 80% !important; /* Match other inputs width */
+  margin-bottom: 15px;
 }
 
 .dropdowntoggle .dropdown {
-    flex: 1;
+  flex: 1;
 }
 
 .dropdowntoggle .btn_toggle {
-    width: 100%;
+  width: 100%;
 }
 
 .btn {
-    height: 45px;
-    background-color: #ffffff !important;
-    border-color: #c1c7cd !important;
+  height: 45px;
+  background-color: #ffffff !important;
+  border-color: #c1c7cd !important;
 }
 
-.btn:hover{
-    border: 0.5px solid rgb(98, 90, 90);
+.btn:hover {
+  border: 0.5px solid rgb(98, 90, 90);
 }
 
 /* Fix dropdown arrow alignment */
 .btn_toggle.dropdown-toggle {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
 }
 
 .btn_toggle.dropdown-toggle::after {
-    margin-left: 0 !important; /* Remove the 100px margin */
-    flex-shrink: 0; /* Prevent arrow from shrinking */
+  margin-left: 0 !important; /* Remove the 100px margin */
+  flex-shrink: 0; /* Prevent arrow from shrinking */
 }
 
-.dropdown-menu{
-    width: 100%;
+.dropdown-menu {
+  width: 100%;
 }
 
-.submit_btn{
-    width: 80% !important; /* Match other inputs width */
-    background-color: #D8BA59B2 !important;
-    margin-top: auto;
-    margin-bottom: 30px;
+.submit_btn {
+  width: 80% !important; /* Match other inputs width */
+  background-color: #d8ba59b2 !important;
+  margin-top: auto;
+  margin-bottom: 30px;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .signUp_formContainer {
-        max-width: 95%; /* Allow more width on mobile */
-        margin: 10px;
-    }
-    
-    .signUp_formContainer form div,
-    .signUp_formContainer form .input-group,
-    .dropdowntoggle,
-    .submit_btn {
-        width: 90% !important; /* Slightly wider on mobile */
-    }
-    
-    /* Keep dropdowns side-by-side on medium screens */
-    .dropdowntoggle {
-        flex-wrap: nowrap; /* Prevent wrapping */
-    }
+  .signUp_formContainer {
+    max-width: 95%; /* Allow more width on mobile */
+    margin: 10px;
+  }
+
+  .signUp_formContainer form div,
+  .signUp_formContainer form .input-group,
+  .dropdowntoggle,
+  .submit_btn {
+    width: 90% !important; /* Slightly wider on mobile */
+  }
+
+  /* Keep dropdowns side-by-side on medium screens */
+  .dropdowntoggle {
+    flex-wrap: nowrap; /* Prevent wrapping */
+  }
 }
 
 @media (max-width: 576px) {
-    /* On small phones, make inputs more compact */
-    .signUp_formContainer form div {
-        height: auto;
-        min-height: 45px;
+  /* On small phones, make inputs more compact */
+  .signUp_formContainer form div {
+    height: auto;
+    min-height: 45px;
+  }
+
+  .signUp_formContainer form .input-group {
+    flex-wrap: wrap; /* Allow first/last name to stack if needed */
+  }
+
+  /* Only stack dropdowns on very small screens */
+  @media (max-width: 400px) {
+    .dropdowntoggle {
+      flex-direction: column;
+      gap: 15px;
     }
-    
-    .signUp_formContainer form .input-group {
-        flex-wrap: wrap; /* Allow first/last name to stack if needed */
+
+    .dropdowntoggle .dropdown {
+      width: 100%;
     }
-    
-    /* Only stack dropdowns on very small screens */
-    @media (max-width: 400px) {
-        .dropdowntoggle {
-            flex-direction: column;
-            gap: 15px;
-        }
-        
-        .dropdowntoggle .dropdown {
-            width: 100%;
-        }
-    }
+  }
 }
 
 /* Ensure form fits on screen */
 .signUp_formContainer form {
-    overflow-y: auto; /* Allow scrolling if needed */
-    max-height: 80vh; /* Limit height */
+  overflow-y: auto; /* Allow scrolling if needed */
+  max-height: 70vh; /* Limit height */
 }
