@@ -1,32 +1,274 @@
-.adminMain_Body{
-    height: 100dvh;
-    width: 100%;
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.adminMain_Body {
+  height: 100dvh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-    .admin_columnOne{
-        height: 100dvh;
-        width: 25%;
+.admin_columnOne {
+  height: 100dvh;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
+.sidebarHeader {
+  height: 15%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 18px;
+  background-color: #171717;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  user-select: none;
+}
 
-            .staffLogo{
-                        height: 15%;
-                        width: 100%;
+.sidebarLogo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
 
-                        display: flex;
-                        background-color: black !important;
+.sidebarBrand {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
 
-                        user-select: none;
-                    }
+.sidebarTitle {
+  margin-top: 30px;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: #d8bc59;
+  line-height: 0.5;
+}
 
+.sidebarSubTitle {
+  font-size: 5px;
+  font-weight: 400;
+  color: #ffffffaa; /* slightly faded white */
+}
+
+.adminMenu {
+  height: 75%;
+  width: 100%;
+
+  background-color: #171717 !important;
+  user-select: none;
+}
+
+.adminOptions {
+  height: 80%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ✅ UPDATED: Sidebar menu styling (no bg by default, hover + active) */
+.options {
+  display: flex;
+  height: 10%;
+  width: 90%;
+
+  padding-top: 8px;
+  padding-left: 15px;
+
+  text-align: center;
+  align-items: center;
+
+  font-weight: 400 !important;
+  color: white;
+
+  border-radius: 8px;
+  background-color: transparent !important; /* ✅ remove all bg */
+  transition: 0.2s ease-in-out;
+ padding-bottom: 6px;
+ 
+}
+
+/* ✅ Hover effect */
+.options:hover {
+  background-color: rgba(245, 245, 245, 0.1) !important;
+  color: whitesmoke;
+}
+
+/* ✅ Active tab */
+.options.active {
+  background-color: rgba(216, 188, 89, 0.25);
+  border-left: 4px solid #d8bc59;
+}
+
+/* ✅ Keep MUI icons white by default */
+.options svg {
+  color: white;
+}
+
+/* ✅ Icon turns gold on hover + active */
+.options:hover svg {
+  color: #d8bc59;
+}
+
+.options.active svg {
+  color: #d8bc59;
+}
+
+.adminUserProfile {
+  border-top: 2px solid rgba(255, 255, 255, 0.1);
+  height: 10%;
+  width: 100%;
+  background-color: #171717;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user_profile {
+  height: 70%;
+  width: 90%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgb(72, 68, 68);
+}
+
+.initials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 80%;
+  width: 13%;
+
+  background-color: #ffffff;
+  font-size: 20px;
+  font-weight: 600;
+
+  border-radius: 50%;
+
+  color: rgb(0, 0, 0);
+}
+
+.user_acc {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  width: 83%;
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+}
+
+/*        Column Two                 */
+
+.showmenu {
+  position: absolute;
+  height: 150px;
+  width: 300px;
+  left: 0;
+  bottom: 0;
+  margin-bottom: 65px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.showmenu .user_menu {
+  height: 40%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.admin_columnTwo {
+  height: 100dvh;
+  width: 75%;
+
+  background-color: aliceblue;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-direction: column;
+
+  overflow-y: hidden;
+}
+
+.user_Acc {
+  position: absolute;
+
+  height: 100%;
+  width: 75%;
+
+  margin-left: 25%;
+
+  background-color: #9d9579;
+
+  z-index: 99;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.userprofile_container {
+  height: 80%;
+  width: 80%;
+
+  background-color: aliceblue;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user_col1 {
+  height: 100%;
+  width: 25%;
+
+  background-color: antiquewhite;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.userprofile_img {
+  height: 30%;
+  width: 100%;
+
+  background-color: #d6c791;
+}
+
+.userinfo {
+  height: 70%;
+  width: 100%;
+
+  background-color: #d8bc59;
+}
+
+.user_col2 {
+  height: 100%;
+  width: 75%;
+
+<<<<<<< HEAD
                      .staffLogo .tgp_logo{
                         height: 100%;
                         width: 30%;
@@ -452,3 +694,7 @@
             background-color: #dc3545;
             color: white;
         }
+=======
+  background-color: rgb(180, 133, 72);
+}
+>>>>>>> 024e4b81aea1bb443a78e5f9a6da78f93920c8b5
