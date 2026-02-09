@@ -203,7 +203,7 @@ function StaffAccount(){
                                     </button>
                                 </div>
 
-                                <div className="addStaff_body">
+                                <div className="addStaff_body1">
 
                                     <span className="addstaff_input mt-4">
                                             <div class="form-floating mb-3">

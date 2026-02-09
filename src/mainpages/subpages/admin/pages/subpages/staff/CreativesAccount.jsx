@@ -136,10 +136,10 @@ function CreativesAccount() {
             </div>
 
             {showForm && (
-                <div className="delete_staff">
-                    <div className="deleteform_header">
+                <div className="delete_staff1">
+                    <div className="deleteform_header1">
                         <span className="mt-3 ms-2">
-                            <p className="mt-4">Delete account ?</p>
+                            <p className="mt-4 ms-2">Delete account ?</p>
                         </span>
                         <button 
                             onClick={closeForm}
@@ -148,7 +148,7 @@ function CreativesAccount() {
                             ×
                         </button>
                     </div>
-                    <div className="deleteform_body mt-2">
+                    <div className="deleteform_body1 mt-2">
                         <span className="question">
                             <p className="mt-3 ms-2">Are you sure you want to delete <br /> this account ?</p>
                         </span>

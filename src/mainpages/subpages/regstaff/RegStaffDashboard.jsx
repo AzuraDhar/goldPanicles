@@ -4,6 +4,8 @@ import StaffMyCoverage from "./pages/StaffMyCoverage";
 import StaffCalendar from "./pages/StaffCalendar";
 import RegStaffSchedule from "./pages/RegStaffSchedule";
 
+import logo from '../../../assets/image/tgp.png';
+
 
 import './RegStaffDashboard.css';
 
@@ -37,8 +39,24 @@ function RegStaffDashboard(){
                 <div className="staff_columnOne">
 
                     <div className="staffLogo">
-
-                    </div>
+                                        
+                                                                    <span className="tgp_logo">
+                                        
+                                                                        <span className="img_logo">
+                                                                                <img src={logo} />
+                                                                        </span>
+                                        
+                                                                    </span>
+                                        
+                                                                    <span className="tgp_title">
+                                        
+                                                                            <span className="tgp_name">
+                                                                                <p className="mt-4">THE GOLD PANICLES</p>
+                                                                            </span>
+                                        
+                                                                    </span>
+                                        
+                                                                </div>
 
                     <div className="staffMenu">
 
