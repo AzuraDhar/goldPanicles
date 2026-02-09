@@ -199,7 +199,7 @@ function AdminMainDashboard() {
                     <span className="ms-2">Dashboard</span>
                 </div>
 
-                <div className="task_status mb-2">
+                <div className="task_status mb-1">
                     <div className="card_list">
                         <span className="card_header">Total no. of request</span>
                         <span className="card_body">{totalRequests}</span>
@@ -220,17 +220,14 @@ function AdminMainDashboard() {
 
                 <div className="tasklist">
                     <div className="tasklist_header">
-                        <p className="ms-3 mt-2">Task distribution</p>
+                        <p className="ms-3 mt-4">Task distribution</p>
                     </div>
 
                     <div className="tasklist_rowHead">
-                        <span>
-                            <p className="ms-3 mt-3">Staffer</p>
-                        </span>
-                        <span className="cleared_task">
-                            <p className="mt-3">No. of task cleared</p>
-                        </span>
-                    </div>
+  <div className="staffer">Staffer</div>
+  <div className="cleared_task">No. of task catered</div>
+</div>
+
 
                     <div className="tasklist_listbody">
                         {sectionHeads.length === 0 ? (
