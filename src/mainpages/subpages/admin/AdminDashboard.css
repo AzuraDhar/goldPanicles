@@ -22,7 +22,7 @@
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   padding: 0 18px;
   background-color: #171717;
   border-bottom: 2px solid rgba(255, 255, 255, 0.1);
@@ -45,9 +45,9 @@
   margin-top: 30px;
   font-size: 18px;
   font-weight: 700;
-  letter-spacing: .8px;
+  letter-spacing: 0.8px;
   color: #d8bc59;
-  line-height: .5;
+  line-height: 0.5;
 }
 
 .sidebarSubTitle {
@@ -65,7 +65,7 @@
 }
 
 .adminOptions {
-  height: 90%;
+  height: 80%;
   width: 100%;
 
   display: flex;
@@ -85,23 +85,24 @@
   text-align: center;
   align-items: center;
 
-  font-weight: 300;
+  font-weight: 400 !important;
   color: white;
 
   border-radius: 8px;
-
+  background-color: transparent !important; /* ✅ remove all bg */
   transition: 0.2s ease-in-out;
 }
 
 /* ✅ Hover effect */
 .options:hover {
-  background-color: rgba(216, 188, 89, 0.15);
+  background-color: rgba(245, 245, 245, 0.1) !important;
+  color: whitesmoke;
 }
 
 /* ✅ Active tab */
 .options.active {
   background-color: rgba(216, 188, 89, 0.25);
-  border-left: 4px solid #d8bc59;
+  border-left: 2px solid #d8bc59;
 }
 
 /* ✅ Keep MUI icons white by default */
@@ -112,6 +113,7 @@
 /* ✅ Icon turns gold on hover + active */
 .options:hover svg {
   color: #d8bc59;
+
 }
 
 .options.active svg {
@@ -119,7 +121,7 @@
 }
 
 .adminUserProfile {
-    border-top: 2px solid rgba(255, 255, 255, 0.1);
+  border-top: 2px solid rgba(255, 255, 255, 0.1);
   height: 10%;
   width: 100%;
   background-color: #171717;

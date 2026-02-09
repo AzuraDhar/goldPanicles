@@ -58,16 +58,16 @@ function AdminDashboard() {
         <div className="sidebarHeader">
           <img src={logo} alt="TGP Logo" className="sidebarLogo" />
 
-         <div className="sidebarBrand">
-  <p className="sidebarTitle">
-    THE GOLD PANICLES
-    <br />
-    <span className="sidebarSubTitle">
-      The official Student Publication of Caraga State University - Main Campus
-    </span>
-  </p>
-</div>
-
+          <div className="sidebarBrand">
+            <p className="sidebarTitle">
+              THE GOLD PANICLES
+              <br />
+              <span className="sidebarSubTitle">
+                The Official Student Publication of Caraga State University -
+                Main Campus
+              </span>
+            </p>
+          </div>
         </div>
 
         <div className="adminMenu">
@@ -77,7 +77,7 @@ function AdminDashboard() {
               onClick={() => setActiveTab("maindashboard")}
               style={{ cursor: "pointer" }}
             >
-              <DashboardIcon sx={{ fontSize: 22, marginRight: 2 }} />
+              <DashboardIcon sx={{ fontSize: 24, marginRight: 2 }} />
               Dashboard
             </span>
 
@@ -95,7 +95,7 @@ function AdminDashboard() {
               onClick={() => setActiveTab("assignment")}
               style={{ cursor: "pointer" }}
             >
-              <AssignmentIcon sx={{ fontSize: 22, marginRight: 2 }} />
+              <AssignmentIcon sx={{ fontSize: 24, marginRight: 2 }} />
               Assignment Management
             </span>
 
@@ -104,7 +104,7 @@ function AdminDashboard() {
               onClick={() => setActiveTab("calendar")}
               style={{ cursor: "pointer" }}
             >
-              <CalendarMonthIcon sx={{ fontSize: 22, marginRight: 2 }} />
+              <CalendarMonthIcon sx={{ fontSize: 24, marginRight: 2 }} />
               Calendar Management
             </span>
 
@@ -113,7 +113,7 @@ function AdminDashboard() {
               onClick={() => setActiveTab("staff")}
               style={{ cursor: "pointer" }}
             >
-              <PeopleAltIcon sx={{ fontSize: 22, marginRight: 2 }} />
+              <PeopleAltIcon sx={{ fontSize: 24, marginRight: 2 }} />
               Staffers Account Management
             </span>
 
@@ -122,7 +122,7 @@ function AdminDashboard() {
               onClick={() => setActiveTab("sched")}
               style={{ cursor: "pointer" }}
             >
-              <ScheduleIcon sx={{ fontSize: 22, marginRight: 2 }} />
+              <ScheduleIcon sx={{ fontSize: 24, marginRight: 2 }} />
               My Schedule
             </span>
           </div>
