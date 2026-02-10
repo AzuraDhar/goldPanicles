@@ -104,6 +104,10 @@
                                     color: white;
                                 }
 
+                                .options.active {
+                                    background-color: #525db1 !important;
+                                }
+
                     .clientProfile{
                         height: 10%;
                         width: 100%;
@@ -284,7 +288,6 @@
         color: white;
         cursor: pointer;
     }
-
 
 .user_col2_one{
     height: 100%;
