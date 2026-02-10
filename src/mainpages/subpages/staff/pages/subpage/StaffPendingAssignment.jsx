@@ -58,6 +58,14 @@ function StaffPendingAssignment() {
             const userFullName = `${currentUser.firstName} ${currentUser.lastName}`.trim();
             const userEmail = currentUser.email;
             
+            console.log('DEBUG - Current user:', {
+                firstName: currentUser.firstName,
+                lastName: currentUser.lastName,
+                fullName: userFullName,
+                email: userEmail,
+                role: userRole
+            });
+            
             const isSectionHead = userRole === 'Section Head' || 
                                  userRole?.toLowerCase().includes('head');
             
@@ -67,20 +75,68 @@ function StaffPendingAssignment() {
                 return;
             }
             
-            const { data, error } = await supabase
+            // FIRST: Get ALL tasks to see what's in the database
+            const { data: allTasks, error: allError } = await supabase
                 .from('taskedTable')
-                .select(`
-                    *,
-                    clientFormrequest (*)
-                `)
-                .or(`assignedHead.eq.${userFullName},assignedHead.eq.${userEmail}`)
+                .select('*, clientFormrequest (*)')
                 .order('created_at', { ascending: true });
             
-            if (error) {
-                throw error;
+            if (allError) {
+                console.error('Error fetching all tasks:', allError);
+                throw allError;
             }
             
-            const transformedData = (data || []).map(task => ({
+            console.log('DEBUG - All tasks from database:', allTasks);
+            
+            // If no tasks at all in the database
+            if (!allTasks || allTasks.length === 0) {
+                console.log('DEBUG - No tasks found in the entire database');
+                setAccounts([]);
+                return;
+            }
+            
+            // Filter tasks assigned to current user
+            const userTasks = allTasks.filter(task => {
+                const matchesName = task.assignedHead === userFullName;
+                const matchesEmail = task.assignedHead === userEmail;
+                
+                console.log(`DEBUG - Comparing:`, {
+                    taskId: task.tasked_id,
+                    dbAssignedHead: task.assignedHead,
+                    userFullName,
+                    matchesName,
+                    matchesEmail
+                });
+                
+                return matchesName || matchesEmail;
+            });
+            
+            console.log('DEBUG - Tasks assigned to current user:', userTasks);
+            console.log('DEBUG - Number of tasks found for user:', userTasks.length);
+            
+            // For debugging: show all tasks temporarily
+            if (userTasks.length === 0) {
+                console.log('DEBUG - No tasks assigned to you. Showing all tasks for debugging.');
+                
+                // TEMPORARY: Show all tasks for debugging purposes
+                // Remove this in production
+                const transformedData = allTasks.map(task => ({
+                    staff_id: task.tasked_id,
+                    firstName: task.clientFormrequest?.requestType || 
+                              task.clientFormrequest?.eventTitle || 
+                              `Task #${task.tasked_id}`,
+                    position: new Date(task.created_at).toLocaleDateString(),
+                    assignedTo: task.assignedHead, // Show who it's assigned to
+                    isAssignedToMe: task.assignedHead === userFullName,
+                    _originalTask: task
+                }));
+                
+                setAccounts(transformedData);
+                // Don't set error here - just show the tasks
+                return;
+            }
+            
+            const transformedData = userTasks.map(task => ({
                 staff_id: task.tasked_id,
                 firstName: task.clientFormrequest?.requestType || 
                           task.clientFormrequest?.eventTitle || 
@@ -90,6 +146,7 @@ function StaffPendingAssignment() {
             }));
             
             setAccounts(transformedData);
+            
         } catch (err) {
             setError(err.message);
             console.error('Error fetching tasks:', err);

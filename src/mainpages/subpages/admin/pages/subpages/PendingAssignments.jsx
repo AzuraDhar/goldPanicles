@@ -272,9 +272,7 @@ function PendingAssignments() {
                     assignedHead: fullName,
                     headPosition: selectedSectionHead.position || 'Section Head',
                     assignedStaff: null,
-                    request_id: selectedRequest.request_id,
-                    status: 'assigned',
-                    assigned_at: new Date().toISOString()
+                    request_id: selectedRequest.request_id
                 });
 
             if (taskedError) throw taskedError;
@@ -463,10 +461,9 @@ function PendingAssignments() {
                                             {sectionHeads.map((sectionHead) => {
                                                 const fullName = `${sectionHead.firstName || ''} ${sectionHead.lastName || ''}`.trim();
                                                 return (
-                                                <div className="sectionhead_radio">
+                                                <div key={sectionHead.staff_id} className="sectionhead_radio">
                                                     
                                                     <span 
-                                                        key={sectionHead.staff_id} 
                                                         className={`section-head-item ${
                                                             selectedSectionHeadId === sectionHead.staff_id ? 'selected' : ''
                                                         }`}

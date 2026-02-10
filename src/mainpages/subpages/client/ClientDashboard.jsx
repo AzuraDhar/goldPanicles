@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { logout } from "../../../api/auth"; // Adjust the path based on your file structure
+import React, { useState, useEffect } from "react";
+import { getUserData, logout } from "../../../api/auth"; // Import getUserData
 
 import './ClientDashboard.css';
 import ClientCalendar from './pages/ClientCalendar.jsx';
@@ -8,12 +8,19 @@ import ClientRequest from './pages/ClientRequest.jsx';
 import logo from '../../../assets/image/tgp.png';
 
 function ClientDashboard(){
-
     const [activeTab, setActiveTab] = useState('calendar');
     const [activeProfileTab, setActiveProfileTab] = useState('profile');
+    const [showProfile, setShowProfile] = useState(false);
+    const [showMenu, setShowMenu] = useState(false);
+    const [userData, setUserData] = useState(null);
     
-    const[showProfile, setShowProfile] = useState(false);
-    const[showMenu, setShowMenu] = useState(false);
+    // Fetch user data on component mount
+    useEffect(() => {
+        const user = getUserData();
+        if (user) {
+            setUserData(user);
+        }
+    }, []);
 
     const handleClick = () =>{
         setShowProfile(!showProfile);
@@ -34,6 +41,80 @@ function ClientDashboard(){
         }
     };
 
+    // Function to get user initials
+    const getUserInitials = () => {
+        if (!userData) return { firstInitial: "C", secondInitial: "L" };
+        
+        // Try to extract names from different possible fields
+        const fullName = userData.full_name || "";
+        const firstName = userData.firstName || userData.first_name || "";
+        const lastName = userData.lastName || userData.last_name || "";
+        const name = userData.name || "";
+        
+        let firstInitial = "";
+        let secondInitial = "";
+        
+        // Priority 1: If full_name exists (e.g., "John Doe")
+        if (fullName.trim()) {
+            const nameParts = fullName.trim().split(" ");
+            if (nameParts.length >= 2) {
+                firstInitial = nameParts[0].charAt(0).toUpperCase();
+                secondInitial = nameParts[nameParts.length - 1].charAt(0).toUpperCase();
+            } else if (nameParts.length === 1) {
+                firstInitial = nameParts[0].charAt(0).toUpperCase();
+                secondInitial = nameParts[0].length > 1 ? nameParts[0].charAt(1).toUpperCase() : "";
+            }
+        }
+        // Priority 2: If firstName and lastName exist separately
+        else if (firstName || lastName) {
+            firstInitial = firstName.charAt(0).toUpperCase();
+            secondInitial = lastName.charAt(0).toUpperCase();
+        }
+        // Priority 3: If name field exists
+        else if (name.trim()) {
+            const nameParts = name.trim().split(" ");
+            if (nameParts.length >= 2) {
+                firstInitial = nameParts[0].charAt(0).toUpperCase();
+                secondInitial = nameParts[nameParts.length - 1].charAt(0).toUpperCase();
+            } else if (nameParts.length === 1) {
+                firstInitial = nameParts[0].charAt(0).toUpperCase();
+                secondInitial = nameParts[0].length > 1 ? nameParts[0].charAt(1).toUpperCase() : "";
+            }
+        }
+        // Priority 4: Fallback to email
+        else if (userData.email) {
+            const emailPrefix = userData.email.split('@')[0];
+            // Remove any numbers from email prefix for better initials
+            const cleanPrefix = emailPrefix.replace(/[0-9]/g, '');
+            if (cleanPrefix.length >= 2) {
+                firstInitial = cleanPrefix.charAt(0).toUpperCase();
+                secondInitial = cleanPrefix.charAt(1).toUpperCase();
+            } else if (cleanPrefix.length === 1) {
+                firstInitial = cleanPrefix.charAt(0).toUpperCase();
+                secondInitial = cleanPrefix.charAt(0).toUpperCase(); // Use same letter twice
+            } else {
+                // If email is just numbers, use first two characters
+                firstInitial = emailPrefix.charAt(0).toUpperCase();
+                secondInitial = emailPrefix.length > 1 ? emailPrefix.charAt(1).toUpperCase() : emailPrefix.charAt(0).toUpperCase();
+            }
+        } 
+        // Priority 5: Fallback to user_id or client_id
+        else if (userData.user_id || userData.client_id || userData.id) {
+            const id = (userData.user_id || userData.client_id || userData.id).toString();
+            firstInitial = id.charAt(0).toUpperCase();
+            secondInitial = id.length > 1 ? id.charAt(1).toUpperCase() : id.charAt(0).toUpperCase();
+        }
+        
+        // Ensure we always have at least "CL" as fallback
+        if (!firstInitial) firstInitial = "C";
+        if (!secondInitial) secondInitial = "L";
+        
+        return { firstInitial, secondInitial };
+    };
+
+    // Get initials
+    const { firstInitial, secondInitial } = getUserInitials();
+
     const renderContent = () => {
         switch(activeTab) {
             case 'calendar':
@@ -48,33 +129,22 @@ function ClientDashboard(){
     return(
         <>
         <div className="clienMainBody">
-
             <div className="clientColumnOne">
-
                 <div className="clientLogo">
-
                     <span className="tgp_logo">
-
                         <span className="img_logo">
-                                <img src={logo} alt="TGP Logo" />
+                            <img src={logo} alt="TGP Logo" />
                         </span>
-
                     </span>
-
                     <span className="tgp_title">
-
-                            <span className="tgp_name">
-                                <p className="mt-4">THE GOLD PANICLES</p>
-                            </span>
-
+                        <span className="tgp_name">
+                            <p className="mt-4">THE GOLD PANICLES</p>
+                        </span>
                     </span>
-
                 </div>
 
                 <div className="clientMenu">
-
                     <div className="clientOptions">
-
                         <span 
                             className={`options mt-4 ${activeTab === 'calendar' ? 'active' : ''}`}
                             onClick={() => setActiveTab('calendar')}
@@ -90,23 +160,20 @@ function ClientDashboard(){
                         >
                             Request
                         </span>
-
                     </div>
-
                 </div>
 
                 <div className="clientProfile">
                     <span className="user_profile" onClick={handleMenu}>
                         <span className="initials">
-                            <p className="mt-3">C</p><p className="mt-3">L</p>
+                            <p className="mt-3">{firstInitial}</p>
+                            <p className="mt-3">{secondInitial}</p>
                         </span>
-
                         <span className="user_acc">
                             <p className="mt-3 ms-2">User Profile</p>
                         </span>
                     </span>
                 </div>
-
             </div>
 
             {/* Profile Settings Panel */}
@@ -142,7 +209,7 @@ function ClientDashboard(){
                             </div>
                         </div>
 
-                        {/* Profile Tab */}
+                        {/* Profile Tab - Updated with actual user data */}
                         {activeProfileTab === 'profile' && (
                             <div className="user_col2_one">
                                 <div className="user_row">
@@ -154,7 +221,14 @@ function ClientDashboard(){
                                 </div>
                                 <div className="user_row profile">
                                     <div className="userName">
-                                        <span>UserName</span>
+                                        {/* Display actual user name */}
+                                        <span>
+                                            {userData?.full_name || 
+                                             userData?.name || 
+                                             `${userData?.firstName || ''} ${userData?.lastName || ''}`.trim() || 
+                                             userData?.email?.split('@')[0] || 
+                                             "Client User"}
+                                        </span>
                                     </div>
                                     <button className="mt-2 save_user">Save</button>
                                 </div>
@@ -176,12 +250,12 @@ function ClientDashboard(){
                                     <span>Change Password</span>
                                     <div className="password_choice mt-3">
                                         <div className="form-floating mb-3">
-                                            <input type="password" className="form-control" id="floatingInput" placeholder="name@example.com" />
-                                            <label htmlFor="floatingInput">Old Password</label>
+                                            <input type="password" className="form-control" id="oldPassword" placeholder="Old Password" />
+                                            <label htmlFor="oldPassword">Old Password</label>
                                         </div>
                                         <div className="form-floating mb-3">
-                                            <input type="password" className="form-control" id="floatingInput" placeholder="name@example.com" />
-                                            <label htmlFor="floatingInput">New Password</label>
+                                            <input type="password" className="form-control" id="newPassword" placeholder="New Password" />
+                                            <label htmlFor="newPassword">New Password</label>
                                         </div>
                                         <button className="">Save</button>
                                     </div>
@@ -224,7 +298,6 @@ function ClientDashboard(){
             <div className="clientColumnTwo">
                 {renderContent()}
             </div>
-
         </div>
         </>
     )

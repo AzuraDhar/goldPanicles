@@ -10,8 +10,6 @@ export const signUpUser = async (userData) => {
           lastName: userData.lastName,
           email: userData.email,
           password: userData.password, 
-          classification: userData.classification,
-          segment: userData.segment,
           created_at: new Date().toISOString()
         }
       ])

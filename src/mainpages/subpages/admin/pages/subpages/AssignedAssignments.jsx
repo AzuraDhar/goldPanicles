@@ -57,8 +57,14 @@ function AssignedAssignments() {
                 .select(`
                     *,
                     taskedTable!inner(
-                        *,
-                        assignedHead
+                        tasked_id,
+                        created_at,
+                        "assignedBy",
+                        "adminPosition",
+                        "assignedHead",
+                        "headPosition",
+                        "assignedStaff",
+                        request_id
                     )
                 `)
                 .eq('status', 'assigned')
@@ -126,7 +132,7 @@ function AssignedAssignments() {
             // Step 3: Fetch taskedTable records for these requests
             const { data: taskedRecords, error: taskedError } = await supabase
                 .from('taskedTable')
-                .select('*')
+                .select('created_at, "assignedHead", request_id')
                 .in('request_id', requestIds);
 
             if (taskedError) console.error("Error fetching tasked records:", taskedError);
@@ -242,11 +248,11 @@ function AssignedAssignments() {
             const { error: taskedError } = await supabase
                 .from('taskedTable')
                 .insert({
-                    assignedBy: 'admin',
-                    adminPosition: 'Administrator',
-                    assignedHead: fullName,
-                    headPosition: null,
-                    assignedStaff: null,
+                    "assignedBy": 'admin',
+                    "adminPosition": 'Administrator',
+                    "assignedHead": fullName,
+                    "headPosition": null,
+                    "assignedStaff": null,
                     request_id: selectedRequest.request_id
                 });
 
@@ -429,10 +435,9 @@ function AssignedAssignments() {
                                             {sectionHeads.map((sectionHead) => {
                                                 const fullName = `${sectionHead.firstName || ''} ${sectionHead.lastName || ''}`.trim();
                                                 return (
-                                                <div className="sectionhead_radio">
+                                                <div key={sectionHead.staff_id} className="sectionhead_radio">
                                                     
                                                     <span 
-                                                        key={sectionHead.staff_id} 
                                                         className={`section-head-item ${
                                                             selectedSectionHeadId === sectionHead.staff_id ? 'selected' : ''
                                                         }`}
