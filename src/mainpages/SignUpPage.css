@@ -211,6 +211,5 @@ input:focus-visible {
 
 /* Ensure form fits on screen */
 .signUp_formContainer form {
-  overflow-y: auto; /* Allow scrolling if needed */
   max-height: 70vh; /* Limit height */
 }

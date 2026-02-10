@@ -1,152 +1,162 @@
-.dash_mainContainer{
-    height: 90%;
-    width: 90%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+
+.dash_mainContainer {
+  height: 90%;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif !important;
 }
 
-.header{
-    height: 8%;
+.header {
+  height: 10%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  font-weight: 500 !important;
+  font-size: 18px;
+}
+
+.header span {
+  color: #d8bc59;
+}
+
+.task_status {
+  height: 30%;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 1%;
+}
+
+.task_status div {
+  height: 90%;
+  width: 25%;
+
+  display: flex;
+  flex-direction: column;
+}
+.card_list {
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* subtle shadow for 3D effect */
+  padding: 6px;
+  background-color: white;
+}
+
+.card_list .card_header {
+  width: 100%;
+  height: 30%;
+  background-color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 13px;
+  font-weight: 400 !important;
+}
+.card_list .card_body {
+  height: 80%;
+  width: 100%;
+  background-color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 25px;
+  font-weight: 400 !important;
+}
+
+.tasklist {
+  height: 65%;
+  width: 100%;
+
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 6px;
+}
+.tasklist_header {
     width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-
-    font-weight: 600;
-    font-size: 13px;
+    text-align: left;       /* aligns text to the left *//* optional: add some padding from the edge */
+    font-weight: 400;
+    font-size: 16px;
+}
+.tasklist_rowHead {
+  display: flex;
+  width: 100%;
+  background-color: white;
+  border-bottom: 1px solid #000; /* optional table border */
+  font-weight: 400;
+  font-size: 16px;
+  padding: 12px 16px; /* vertical + horizontal spacing */
 }
 
-.header span{
-    color: #D8BC59;
+.tasklist_rowHead .staffer {
+  width: 70%; /* left side 70% */
 }
 
-.task_status{
-    height: 27%;
-    width: 100%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    gap: 2%;
+.tasklist_rowHead .cleared_task {
+  width: 30%; /* right side 30% */
+  text-align: center;
 }
 
+.tasklist_listbody {
+  height: 80%;
+  width: 100%;
 
-
-.task_status div{
-    height: 90%;
-    width: 25%; 
-
-    display: flex;
-    flex-direction: column;
+  background-color: white;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
 }
 
-.card_list .card_header{
-    width: 100%;
-    height: 20%;
-    background-color: white;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    font-size: 11px;
-    font-weight: 600;
-}
-.card_list .card_body{
-    height: 80%;
-    width: 100%;
-    background-color: white;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    font-size: 25px;
-    font-weight: 600;
+.list_container {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #6e6868;
+  background-color: white;
 }
 
-.tasklist{
-    height: 65%;
-    width: 100%;
-
-    background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+.list_container span:first-child {
+  width: 70%;
+  padding-left: 16px; /* optional spacing */
+  display: flex;
+  align-items: center;
 }
 
-.tasklist_header{
-    height: 8%;
-    width: 100%;
-
-    background-color: white;
-
-    font-size: 13px;
-    font-weight: 600;
+.list_container .no_task {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 16px; /* optional spacing */
 }
 
-.tasklist_rowHead{
-    height: 12%;
-    width: 100%;
-
-    display: flex;
-    background-color: white;
-
-    border-bottom: 1px solid black;
-}
-.tasklist_rowHead span{
-    height: 100%;
-    width: 46%;
-    font-weight: 600;
-
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.cleared_task{
-    display: flex;
-    justify-content: flex-end !important;
-    align-items: center;
-}
-
-.tasklist_listbody{
-    height: 80%;
-    width: 100%;
-
-    background-color: white;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-direction: column;
-}
-
-.tasklist_listbody span{
-    height: 100%;
-    width: 45%;
-    font-weight: 600;
-
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-}
-
-.no_task{
-     display: flex;
-    justify-content: flex-end !important;
-    align-items: center;
-}
-.list_container{
-    height: 50px;
-    width: 100%;
-
-    display: flex;
-    background-color: white;
-    align-items: center;
-
-    border-bottom: 1px solid #6e6868;
+.list_container p {
+  margin: 0; /* remove default margins for better alignment */
 }
