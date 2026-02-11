@@ -293,8 +293,8 @@ function StaffPendingAssignment() {
             </div>
 
             {showForm && selectedTask && (
-                <div className="delete_staff">
-                    <div className="deleteform_header">
+                <div className="delete_staff1">
+                    <div className="deleteform_header1">
                         <span className="mt-3 ms-2">
                             <p className="mt-4">Task Details</p>
                         </span>
@@ -305,7 +305,7 @@ function StaffPendingAssignment() {
                             ×
                         </button>
                     </div>
-                    <div className="deleteform_body mt-2">
+                    <div className="deleteform_body1 mt-2">
                         <div className="question">
                             <p className="mt-3 ms-2">
                                 <strong>Task #{selectedTask.tasked_id}</strong><br />
@@ -321,9 +321,9 @@ function StaffPendingAssignment() {
                                 )}
                             </p>
                         </div>
-                        <span className="delete_buttons">
-                            <button onClick={closeForm}>Close</button>
-                            <button className="bg-primary" onClick={() => handleInvitation()}>Assign Staff</button>
+                        <span className="delete_buttons1">
+                            <button className="assign_closebtn" onClick={closeForm}>Close</button>
+                            <button className="assign_btn" onClick={() => handleInvitation()}>Assign Staff</button>
                         </span>
                     </div>
                 </div>

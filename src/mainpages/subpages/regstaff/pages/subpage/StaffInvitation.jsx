@@ -146,8 +146,8 @@ function StaffInvitation() {
             </div>
 
             {showForm && selectedInvitation && (
-                <div className="delete_staff">
-                    <div className="deleteform_header">
+                <div className="delete_staff2">
+                    <div className="deleteform_header1">
                         <span className="mt-3 ms-2">
                             <p className="mt-4">Invitation Details</p>
                         </span>
@@ -158,7 +158,7 @@ function StaffInvitation() {
                             ×
                         </button>
                     </div>
-                    <div className="deleteform_body mt-2">
+                    <div className="deleteform_body1 mt-2">
                         <div className="question">
                             <p className="mt-3 ms-2">
                                 <strong>Task Invitation</strong><br /><br />
@@ -173,18 +173,17 @@ function StaffInvitation() {
                                 }}>{selectedInvitation.invitations_status || 'pending'}</span>
                             </p>
                         </div>
-                        <span className="delete_buttons">
-                            <button onClick={closeForm}>Close</button>
+                        <span className="delete_buttons mt-5">
                             {selectedInvitation.invitations_status === 'pending' && (
                                 <>
                                     <button 
-                                        className="bg-success" 
+                                        className="accept_btn me-3" 
                                         onClick={() => updateInvitationStatus('accepted')}
                                     >
                                         Accept
                                     </button>
                                     <button 
-                                        className="bg-danger"
+                                        className="reject_btn"
                                         onClick={() => updateInvitationStatus('rejected')}
                                     >
                                         Reject

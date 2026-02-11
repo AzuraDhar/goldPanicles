@@ -2,8 +2,6 @@
     height: 10%;
     width: 100%;
 
-    background-color: bisque;
-
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -27,4 +25,30 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+}
+
+.delete_staff2{
+    position: absolute;
+
+    min-height: 400px;
+    width: 25%;
+    padding: 10px;
+}
+
+.close_invi{
+      background-color: rgb(248, 81, 81) !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    color: white !important;
+}
+
+.accept_btn{
+    background-color: rgb(52, 90, 243) !important;
+    color: white !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.reject_btn{
+      background-color: rgb(248, 81, 81) !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    color: white !important;
 }

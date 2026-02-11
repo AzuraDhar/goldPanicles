@@ -502,7 +502,7 @@ function PendingAssignments() {
                                     </button>
                                     <button 
                                         type="submit" 
-                                        className="assign_button"
+                                        className="assign_button me-2"
                                         disabled={!selectedSectionHeadId}
                                     >
                                         Done

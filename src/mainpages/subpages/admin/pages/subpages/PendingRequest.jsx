@@ -9,7 +9,7 @@ function PendingRequest() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [showForm, setShowForm] = useState(false);
-    const [updating, setUpdating] = useState(false); // ADD THIS STATE
+    const [updating, setUpdating] = useState(false);
     const [formData, setFormData] = useState({
         eventTitle: '',
         description: '',
@@ -202,6 +202,11 @@ function PendingRequest() {
         }
     };
 
+    // Function to check if attachFile is empty/null
+    const hasAttachment = (fileUrl) => {
+        return fileUrl && fileUrl.trim() !== '' && fileUrl !== 'null' && fileUrl !== 'undefined';
+    };
+
     if (loading) {
         return <div className="loading">Loading requests...</div>;
     }
@@ -273,15 +278,27 @@ function PendingRequest() {
                             
                             <span className="approveDetails ms-1">
                                 <p><strong>Location:</strong> {selectedRequest.location}</p>
-                                <p className="ms-5"><strong>Contact Info:</strong> {selectedRequest.contactInfo}</p>
+                            </span>
+                            
+                            {/* Organization Type/Request Type */}
+                            <span className="approveDetails ms-1">
+                                <p><strong>Organization Type:</strong> {selectedRequest.requestType || 'Not specified'}</p>
                             </span>
                             
                             <span className="approveDetails ms-1">
                                 <p><strong>Contact Person:</strong> {selectedRequest.contactPerson}</p>
+                                <p className="ms-5"><strong>Contact Info:</strong> {selectedRequest.contactInfo}</p>
                             </span>
                             
+                            {/* Updated: Attach File with null check */}
                             <span className="approveDetails ms-1">
-                                <p><strong>Attach File:</strong> <span>{selectedRequest.attachFile}</span></p>
+                                <p><strong>Attach File:</strong> 
+                                    {hasAttachment(selectedRequest.attachFile) ? (
+                                        <span> {selectedRequest.attachFile}</span>
+                                    ) : (
+                                        <span> No files uploaded</span>
+                                    )}
+                                </p>
                             </span>
                              
                             <span className="mt-4">

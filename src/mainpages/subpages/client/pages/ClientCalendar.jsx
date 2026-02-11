@@ -14,8 +14,10 @@ function ClientCalendar() {
     eventTitle: '',
     description: '',
     date: '',
-    time: '',
+    time: '',        // time_from
+    time_to: '',     // time_to - NEW
     location: '',
+    requestType: '', 
     contactPerson: '',
     contactInfo: '',
     attachFile: '',
@@ -29,8 +31,18 @@ function ClientCalendar() {
   const [currentUser, setCurrentUser] = useState(null);
   const [userId, setUserId] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [monthEvents, setMonthEvents] = useState({}); // Store events by date for the current month view
+  const [monthEvents, setMonthEvents] = useState({});
+  const [adminEventsDates, setAdminEventsDates] = useState(new Set());
   const fileInputRef = useRef(null);
+
+  // Organization type options
+  const requestTypes = [
+    'Office',
+    'Department',
+    'Student Club',
+    'Academic',
+    'Organization',
+  ];
 
   // Format date as YYYY-MM-DD for Supabase
   const formatDateForQuery = (date) => {
@@ -111,6 +123,13 @@ function ClientCalendar() {
       const clientEvents = clientEventsResponse.data || [];
       const adminEvents = adminEventsResponse.data || [];
       
+      // Extract admin event dates into a Set
+      const adminDatesSet = new Set();
+      adminEvents.forEach(event => {
+        adminDatesSet.add(event.date);
+      });
+      setAdminEventsDates(adminDatesSet);
+      
       // Combine all events
       const allEvents = [...clientEvents, ...adminEvents];
       
@@ -134,6 +153,12 @@ function ClientCalendar() {
     loadMonthEvents(activeStartDate);
   };
 
+  // Check if date has admin events
+  const dateHasAdminEvents = (date) => {
+    const dateStr = formatDateForQuery(date);
+    return adminEventsDates.has(dateStr);
+  };
+
   // Tile content function to show rectangle indicators for dates with events
   const tileContent = ({ date, view }) => {
     if (view === 'month') {
@@ -141,19 +166,29 @@ function ClientCalendar() {
       const dateEvents = monthEvents[dateStr];
       
       if (dateEvents && dateEvents.length > 0) {
+        const hasAdminEvents = dateHasAdminEvents(date);
+        
         return (
           <div className="calendar-event-indicator">
             <div className="event-indicator-bar">
               <div 
-                className="event-indicator"
-                title={`${dateEvents.length} event(s) scheduled`}
+                className={`event-indicator ${hasAdminEvents ? 'admin-event' : ''}`}
+                title={`${dateEvents.length} event(s) scheduled${hasAdminEvents ? ' (Admin events - Not available)' : ''}`}
               >
-                EVENT
+                {hasAdminEvents ? 'UNAVAILABLE' : 'EVENT'}
               </div>
             </div>
           </div>
         );
       }
+    }
+    return null;
+  };
+
+  // Disable dates with admin events
+  const tileClassName = ({ date, view }) => {
+    if (view === 'month' && dateHasAdminEvents(date)) {
+      return 'tile-disabled';
     }
     return null;
   };
@@ -197,16 +232,46 @@ function ClientCalendar() {
         font-size: 10px;
         font-weight: bold;
         color: white;
-        background-color: #dc3545; /* Red background */
+        background-color: #dc3545;
         text-transform: uppercase;
         letter-spacing: 0.5px;
         cursor: default;
         transition: all 0.2s ease;
       }
       
-      .react-calendar__tile:hover .event-indicator {
-        background-color: #c82333; /* Darker red on hover */
+      .event-indicator.admin-event {
+        background-color: #6c757d !important;
+        cursor: not-allowed;
+      }
+      
+      .react-calendar__tile:hover .event-indicator:not(.admin-event) {
+        background-color: #c82333;
         transform: scale(1.02);
+      }
+      
+      .react-calendar__tile:hover .event-indicator.admin-event {
+        background-color: #5a6268 !important;
+      }
+      
+      .tile-disabled {
+        background-color: #f8f9fa !important;
+        color: #6c757d !important;
+        cursor: not-allowed !important;
+        opacity: 0.7 !important;
+      }
+      
+      .tile-disabled:hover {
+        background-color: #f8f9fa !important;
+      }
+      
+      .tile-disabled .react-calendar__tile--active {
+        background-color: #f8f9fa !important;
+        color: #6c757d !important;
+      }
+      
+      .tile-disabled .react-calendar__tile--now {
+        background-color: #f8f9fa !important;
+        border: 2px solid #6c757d !important;
       }
       
       .react-calendar__tile--now {
@@ -229,7 +294,11 @@ function ClientCalendar() {
       
       .react-calendar__tile--active .event-indicator {
         color: white;
-        background-color: #ff6b6b; /* Lighter red for active dates */
+        background-color: #ff6b6b;
+      }
+      
+      .tile-disabled .react-calendar__tile--active .event-indicator {
+        background-color: #6c757d !important;
       }
       
       .react-calendar__month-view__days__day {
@@ -241,7 +310,6 @@ function ClientCalendar() {
         position: relative;
       }
       
-      /* Responsive adjustments */
       @media (max-width: 768px) {
         .event-indicator {
           font-size: 8px;
@@ -281,8 +349,10 @@ function ClientCalendar() {
       eventTitle: '',
       description: '',
       date: '',
-      time: '',
+      time: '',        // Reset time_from
+      time_to: '',     // Reset time_to
       location: '',
+      requestType: '',
       contactPerson: '',
       contactInfo: '',
       attachFile: '',
@@ -294,6 +364,12 @@ function ClientCalendar() {
   };
 
   const onChange = (newDate) => {
+    // Check if date has admin events
+    if (dateHasAdminEvents(newDate)) {
+      alert('This date is not available for booking. Please select another date.');
+      return;
+    }
+    
     if (!isLoggedIn || !userId) {
       setSubmitMessage('❌ Error: You must be logged in to submit a request');
       setShowForm(true);
@@ -474,10 +550,10 @@ function ClientCalendar() {
                       currentUser?.username || 
                       'Unknown User';
       
-      // Prepare submission data - ONLY user_id goes to database
+      // Prepare submission data
       const submissionData = {
         ...formData,
-        user_id: userId, // Only this goes to database
+        user_id: userId,
         attachFile: fileData ? fileData.url : '',
         fileData: fileData ? {
           path: fileData.path,
@@ -486,8 +562,8 @@ function ClientCalendar() {
           fileType: fileData.fileType
         } : null,
         created_at: new Date().toISOString(),
-        time: formData.time || formatTime(new Date()),
-        status: 'pending'
+        status: 'pending',
+        // time and time_to are already in formData
       };
 
       // LOG ALL DETAILED INFORMATION TO CONSOLE
@@ -496,13 +572,15 @@ function ClientCalendar() {
         eventTitle: submissionData.eventTitle,
         description: submissionData.description,
         date: submissionData.date,
-        time: submissionData.time,
+        time: submissionData.time,        // time_from
+        time_to: submissionData.time_to,  // time_to
         location: submissionData.location,
+        requestType: submissionData.requestType,
         contactPerson: submissionData.contactPerson,
         contactInfo: submissionData.contactInfo,
         attachFile: submissionData.attachFile || 'No file',
         status: submissionData.status,
-        user_id: submissionData.user_id, // Only this goes to DB
+        user_id: submissionData.user_id,
         created_at: submissionData.created_at
       });
       
@@ -511,7 +589,7 @@ function ClientCalendar() {
         user_email: userEmail,
         user_name: userName,
         user_role: currentUser?.role || 'N/A',
-        user_fullData: currentUser // Complete user object
+        user_fullData: currentUser
       });
       
       if (fileData) {
@@ -531,14 +609,14 @@ function ClientCalendar() {
       });
       
       console.log('🔑 DATABASE COLUMNS BEING SAVED:', [
-        'eventTitle', 'description', 'date', 'time', 'location', 
+        'eventTitle', 'description', 'date', 'time', 'time_to', 'location', 
         'contactPerson', 'contactInfo', 'attachFile', 'status', 
-        'user_id', 'created_at', 'fileData (JSON)'
+        'user_id', 'created_at', 'fileData (JSON)', 'requestType'
       ].join(', '));
       
       console.log('======================================================');
 
-      // Submit to your API (only user_id goes to DB)
+      // Submit to your API
       const result = await submitClientForm(submissionData);
       
       // Log API response
@@ -556,6 +634,9 @@ function ClientCalendar() {
           form_data_saved: {
             eventTitle: submissionData.eventTitle.substring(0, 50) + '...',
             date: submissionData.date,
+            time: submissionData.time,
+            time_to: submissionData.time_to,
+            requestType: submissionData.requestType,
             status: submissionData.status
           }
         });
@@ -604,6 +685,7 @@ function ClientCalendar() {
             value={date}
             locale="en-US"
             tileContent={tileContent}
+            tileClassName={tileClassName}
             onActiveStartDateChange={handleActiveStartDateChange}
           />
         </div>
@@ -674,18 +756,34 @@ function ClientCalendar() {
                 />
               </div>
               
-              <div className="col-md-6">
-                <label htmlFor="time" className='mb-1 ms-1'>Time*</label>
-                <input 
-                  type="time" 
-                  className="form-control" 
-                  id="time"
-                  value={formData.time}
-                  onChange={handleInputChange}
-                  placeholder="HH:MM format (e.g., 14:30)"
-                  required
-                  disabled={loading || uploading || !isLoggedIn}
-                />
+              <div className="col-md-3 time_frame">
+                <div className="time-input-group mt-1">
+                  <label htmlFor="time" className='mb-1 ms-1'>Time from*</label>
+                  <input 
+                    type="time" 
+                    className="form-control" 
+                    id="time"
+                    value={formData.time}
+                    onChange={handleInputChange}
+                    placeholder="HH:MM format (e.g., 14:30)"
+                    required
+                    disabled={loading || uploading || !isLoggedIn}
+                  />
+                </div>
+                
+                <div className="time-input-group mt-1">
+                  <label htmlFor="time_to" className='mb-1 ms-1'>Time to*</label>
+                  <input 
+                    type="time" 
+                    className="form-control" 
+                    id="time_to"
+                    value={formData.time_to}
+                    onChange={handleInputChange}
+                    placeholder="HH:MM format (e.g., 14:30)"
+                    required
+                    disabled={loading || uploading || !isLoggedIn}
+                  />
+                </div>
               </div>
             </div>
 
@@ -700,6 +798,25 @@ function ClientCalendar() {
                 required
                 disabled={loading || uploading || !isLoggedIn}
               />
+            </div>
+
+            <div className="requestForm_label mt-2 ms-3">
+              <label htmlFor="requestType" className='mb-1 ms-1'>Organization Type*</label>
+              <select 
+                className="form-control" 
+                id="requestType"
+                value={formData.requestType}
+                onChange={handleInputChange}
+                required
+                disabled={loading || uploading || !isLoggedIn}
+              >
+                <option value="">Select Organization Type</option>
+                {requestTypes.map((type, index) => (
+                  <option key={index} value={type}>
+                    {type}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <div className="requestForm_label1 ms-2 row g-3">

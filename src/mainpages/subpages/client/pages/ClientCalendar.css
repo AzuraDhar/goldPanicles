@@ -57,7 +57,7 @@
 }
 
                 .clientRequestForm{
-                    min-height: 75%;
+                    min-height: 85%;
                     width: 30%;
 
                     background-color: white;
@@ -132,9 +132,11 @@
 
                         .submit_btn1{
                             background-color: rgb(99, 162, 246) !important;
+                            color: white !important;
                         }
                         .submit_btn2{
                             background-color: #E4626B !important;
+                            color: white !important;
                         }
 
                         /* Add this to your existing ClientCalendar.css file */
@@ -154,4 +156,18 @@
         width: 95%;
 
         background-color: aliceblue;
+}
+.time_frame {
+  display: flex;
+  gap: 20px;
+}
+
+.time-input-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.time-input-group .form-control {
+  width: 100%;
 }
